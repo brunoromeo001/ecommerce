@@ -8,14 +8,16 @@ use \Hcode\Mailer;
 
 class Product extends Model{
 			
-	public static function listAll(){
+	public static function listAll()
+	{
 		
 		$sql = new Sql();
 		
 		return $sql->select("SELECT * FROM tb_products ORDER BY desproduct");
 	}
 	
-	public static function checkList($list){
+	public static function checkList($list)
+	{
 		
 		foreach ($list as &$row){
 			
@@ -27,7 +29,8 @@ class Product extends Model{
 		return $list;
 	}
 			
-	public function save(){
+	public function save()
+	{
 		
 		$sql = new Sql();
 			
@@ -45,7 +48,8 @@ class Product extends Model{
 		$this->setData($results[0]);			
 	}
 	
-	public function get($idproduct){
+	public function get($idproduct)
+	{
 		
 		$sql = new Sql();
 		
@@ -56,7 +60,8 @@ class Product extends Model{
 		$this->setData($results[0]);
 	}
 	
-	public function delete(){
+	public function delete()
+	{
 		
 		$sql = new Sql();
 		
@@ -65,7 +70,8 @@ class Product extends Model{
 		]);
 	}	
 	
-	public function checkPhoto(){
+	public function checkPhoto()
+	{
 		
 		if (file_exists(
 			$_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .
@@ -86,7 +92,8 @@ class Product extends Model{
 		
 	}
 	
-	public function getValues(){
+	public function getValues()
+	{
 		
 		$this->checkPhoto();
 		
@@ -95,7 +102,8 @@ class Product extends Model{
 		return $values;
 	}
 	
-	public function setPhoto($file){
+	public function setPhoto($file)
+	{
 		
 		$extension = explode('.', $file['name']);
 		$extension = end($extension);
@@ -130,7 +138,8 @@ class Product extends Model{
 		$this->checkPhoto();
 	}
 	
-	public function getFromURL($desurl){
+	public function getFromURL($desurl)
+	{
 		
 		$sql = new Sql();
 		
@@ -141,7 +150,8 @@ class Product extends Model{
 		$this->setData($rows[0]);
 	}
 	
-	public function getCategories(){
+	public function getCategories()
+	{
 		
 		$sql = new Sql();
 		
