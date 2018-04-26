@@ -12,6 +12,7 @@ class User extends Model{
 	const SECRET = "HcodePhp7_Secret";
 	const ERROR = "UserError";
 	const ERROR_REGISTER = "UserErrorRegister";
+	const SUCCESS = "UserSuccess";
 	
 	public static function getFromSession()
 	{
@@ -62,7 +63,7 @@ class User extends Model{
 		
 		$sql = new Sql();
 		
-		$results = $sql->select("SELECT * FROM tb_users WHERE deslogin = :LOGIN", array(
+		$results = $sql->select("SELECT * FROM tb_users a INNER JOIN tb_persons b ON a.idperson = b.idperson WHERE deslogin = :LOGIN", array(
 			":LOGIN"=>$login
 		));
 		
@@ -293,7 +294,7 @@ class User extends Model{
 	public static function setError($msg)
 	{
 		
-		$_SESSION[User::Error] = $msg;
+		$_SESSION[User::ERROR] = $msg;
 
 	}	
 	
@@ -380,6 +381,8 @@ class User extends Model{
 		]);
 		
 	}
+	
+	
 }
 ?>
 
