@@ -38,8 +38,8 @@ $app->post("/admin/orders/:idorder/status", function($idorder){
 	$order = new Order();
 			
 	$order->get((int)$idorder);
-	
-	$order->setidstatus((int)$idorder);
+		
+	$order->setidstatus((int)$_POST['idstatus']);
 	
 	$order->save();
 	
