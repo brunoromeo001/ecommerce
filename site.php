@@ -256,7 +256,8 @@ $app->post("/checkout", function(){
 		case 2:
 			header("Location: /order/".$order->getidorder()."/paypal");
 		break;
-	}			
+	}	
+	exit;
 });
 
 $app->get("/order/:idorder/pagseguro", function($idorder){
