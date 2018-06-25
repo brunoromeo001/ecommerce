@@ -210,7 +210,15 @@ class Product extends Model{
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsParPage)
 		];
 	}
-
+	
+	public static function quantProducts()
+	{		
+		$sql = new Sql();
+		
+		$count = $sql->query("SELECT COUNT(*) FROM tb_products");	
+			
+		return $count;
+	}
 }
 ?>
 
