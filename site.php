@@ -331,6 +331,8 @@ $app->post("/login", function(){
 	} catch(Exception $e){
 			
 		User::setError($e->getMessage());
+		header("Location: /login");
+		exit;
 	}
 	
 	User::login($_POST['login'], $_POST['password']);
