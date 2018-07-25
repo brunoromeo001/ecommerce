@@ -59,6 +59,8 @@ class Mailer{
 
 		//Whether to use SMTP authentication
 		$this->mail->SMTPAuth = true;
+		
+		$this->mail->CharSet= 'UTF-8';
 
 		//Username to use for SMTP authentication - use full email address for gmail
 		$this->mail->Username = Mailer::USERNAME;

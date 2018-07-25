@@ -432,6 +432,7 @@ $app->get("/forgot/reset", function(){
 	$page = new Page();
 	
 	$page->setTpl("forgot-reset", array(
+		'error'=>User::getError(),
 		"name"=>$user["desperson"],
 		"code"=>$_GET["code"]
 	));
@@ -439,6 +440,7 @@ $app->get("/forgot/reset", function(){
 
 $app->post("/forgot/reset", function(){
 			
+try{
 	$forgot = User::validForgotDecrypt($_POST["code"]);
 	
 	User::setForgotUsed($forgot["idrecovery"]);
@@ -453,8 +455,15 @@ $app->post("/forgot/reset", function(){
 	
 	$page = new Page();
 	
-	$page->setTpl("forgot-reset-success");		
+	$page->setTpl("forgot-reset-success");	
 	
+} catch(Exception $e){
+			
+		User::setError($e->getMessage());
+		header("Location: /forgot-reset-error");
+		exit;
+	}
+
 });
 
 $app->get("/profile", function(){
