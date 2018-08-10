@@ -406,16 +406,29 @@ $app->get("/forgot", function() {
     
 	$page = new Page();
 	
-	$page->setTpl("forgot");
+	$page->setTpl("forgot", [
+		'error'=>User::getError()
+	]);
 
 });
 
 $app->post("/forgot", function(){
 			
-	$user = User::getForgot($_POST["email"], false);
+/* 	$user = User::getForgot($_POST["email"], false);
 	
 	header("Location: /forgot/sent");
-	exit;
+	exit;  */
+	
+	try{
+    		
+    	User::login(User::getForgot($_POST["email"], false));
+    		
+    } catch(Exception $e){
+    			
+    	User::setError($e->getMessage());
+    	header("Location: /forgot");
+    	exit;
+    } 
 });
 
 $app->get("/forgot/sent", function(){
@@ -431,39 +444,30 @@ $app->get("/forgot/reset", function(){
 	
 	$page = new Page();
 	
-	$page->setTpl("forgot-reset", array(
-		'error'=>User::getError(),
+	$page->setTpl("forgot-reset", [		
 		"name"=>$user["desperson"],
 		"code"=>$_GET["code"]
-	));
+	]);
 });
 
 $app->post("/forgot/reset", function(){
 			
-try{
 	$forgot = User::validForgotDecrypt($_POST["code"]);
-	
+		
 	User::setForgotUsed($forgot["idrecovery"]);
 
 	$user = new User();
-	
+		
 	$user->get((int)$forgot["iduser"]);
-	
+		
 	$password = password_hash($_POST["password"], PASSWORD_DEFAULT, ["const"=>12]);
-	
+		
 	$user->setPassword($password);
-	
+		
 	$page = new Page();
-	
+		
 	$page->setTpl("forgot-reset-success");	
-	
-} catch(Exception $e){
-			
-		User::setError($e->getMessage());
-		header("Location: /forgot-reset-error");
-		exit;
-	}
-
+		
 });
 
 $app->get("/profile", function(){
