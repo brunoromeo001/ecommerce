@@ -7,9 +7,7 @@ use \Hcode\Model\OrderStatus;
 
 $app->get("/admin/orders/:idorder/status", function($idorder){
 	
-	User::verifyLogin();
-	
-	
+	User::verifyLogin();		
 	
 	$order = new Order();
 			

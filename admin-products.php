@@ -7,9 +7,7 @@ use \Hcode\Model\Product;
 $app->get("/admin/products", function(){
 	
 	User::verifyLogin();
-	
-	$quantProducts = Product::quantProducts();
-	
+			
 	//pega o valor que está no formulario
 	$search = (isset($_GET['search'])) ? $_GET['search'] : "";
 	$page = (isset($_GET['page'])) ? (int)$_GET['page'] : 1;
@@ -41,8 +39,7 @@ $app->get("/admin/products", function(){
 	$page->setTpl("products",[
 		"products"=>$pagination['data'],
 		"search"=>$search,
-		"pages"=>$pages,
-		"quantProducts"=>$quantProducts
+		"pages"=>$pages		
 	]);
 });
 
