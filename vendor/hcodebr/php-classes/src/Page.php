@@ -2,6 +2,7 @@
 
 namespace Hcode;
 
+use Hcode\Model\User;
 use Rain\Tpl;
 
 class Page{
@@ -27,6 +28,14 @@ class Page{
 		Tpl::configure( $config );
 		
 		$this->tpl = new Tpl;
+		
+		if (isset($_SESSION[User::SESSION])) $this->tpl->assign("user", $_SESSION[User::SESSION]);
+		
+		$pageName = explode("/", $_SERVER['REQUEST_URI']);
+		
+		$pageName = end($pageName);
+		
+		$this->tpl->assign("pageName", $pageName);
 		
 		$this->setData($this->options["data"]);
 		
