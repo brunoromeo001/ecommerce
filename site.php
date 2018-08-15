@@ -335,7 +335,7 @@ $app->post("/login", function(){
 		exit;
 	}
 	
-	User::login($_POST['login'], $_POST['password']);
+	//User::login($_POST['login'], $_POST['password']);
 	
 	header("Location: /checkout");
 	exit;	

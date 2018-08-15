@@ -7,8 +7,8 @@
   </h1>
   <ol class="breadcrumb">
     <li><a href="/admin"><i class="fa fa-dashboard"></i> Home</a></li>
-    <li><a href="/admin/categories">Categorias</a></li>
-    <li class="active"><a href="/admin/categories/create">Cadastrar</a></li>
+    <li><a href="/admin/products">Produtos</a></li>
+    <li class="active"><a href="#">Cadastrar</a></li>
   </ol>
 </section>
 
@@ -31,23 +31,23 @@
             </div>
             <div class="form-group">
               <label for="vlprice">Preço</label>
-              <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="vlprice" name="vlprice" step="0.01" placeholder="R$ 0.00">
             </div>
             <div class="form-group">
               <label for="vlwidth">Largura</label>
-              <input type="number" class="form-control" id="vlwidth" name="vlwidth" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="vlwidth" name="vlwidth" step="0.01" placeholder="0.00 cm">
             </div>
             <div class="form-group">
               <label for="vlheight">Altura</label>
-              <input type="number" class="form-control" id="vlheight" name="vlheight" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="vlheight" name="vlheight" step="0.01" placeholder="0.00 cm">
             </div>
             <div class="form-group">
               <label for="vllength">Comprimento</label>
-              <input type="number" class="form-control" id="vllength" name="vllength" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="vllength" name="vllength" step="0.01" placeholder="0.00 cm">
             </div>
             <div class="form-group">
               <label for="vlweight">Peso</label>
-              <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00">
+              <input type="number" class="form-control" id="vlweight" name="vlweight" step="0.01" placeholder="0.00 kg">
             </div>
 			<div class="form-group">
               <label for="desurl">URL</label>
@@ -57,6 +57,7 @@
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="submit" class="btn btn-success">Cadastrar</button>
+			<a href="/admin/products" class="btn btn-danger">Cancelar</a>
           </div>
         </form>
       </div>

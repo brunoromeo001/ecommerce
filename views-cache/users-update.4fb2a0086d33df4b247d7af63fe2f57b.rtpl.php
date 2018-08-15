@@ -45,6 +45,7 @@
           <!-- /.box-body -->
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">Salvar</button>
+			<a href="/admin/users" class="btn btn-danger">Cancelar</a>
           </div>
         </form>
       </div>

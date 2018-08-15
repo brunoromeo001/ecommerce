@@ -46,23 +46,21 @@
             </div>
             <div class="form-group">
               <label for="file">Foto</label>
-              <input type="file" class="form-control" id="file" name="file" value="<?php echo htmlspecialchars( $product["vlweight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">
-              <div class="box box-widget">
+              <input type="file" class="form-control" id="file" name="file" value="<?php echo htmlspecialchars( $product["vlweight"], ENT_COMPAT, 'UTF-8', FALSE ); ?>">             
                 <div class="box-body">
                   <img class="img-responsive" id="image-preview" src="<?php echo htmlspecialchars( $product["desphoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" alt="Photo">
-                </div>
-              </div>
+                </div>              
             </div>
           </div>
-          </div>
-          <!-- /.box-body -->
+                    <!-- /.box-body -->
           <div class="box-footer">
             <button type="submit" class="btn btn-primary">Salvar</button>
+			<a href="/admin/products" class="btn btn-danger">Cancelar</a>
           </div>
         </form>
       </div>
   	</div>
-  </div>
+ </div>
 
 </section>
 <!-- /.content -->
