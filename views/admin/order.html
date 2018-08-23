@@ -18,7 +18,7 @@
             <div class="col-xs-12">
             <h2 class="page-header">
                 <img src="/res/site/img/logo.png" alt="Logo">
-                <small class="pull-right">Date: {function="date('d/m/Y')"}</small>
+                <small class="pull-right">Data: {function="date('d/m/Y')"}</small>
             </h2>
             </div>
             <!-- /.col -->
@@ -75,7 +75,7 @@
                     <td>{$value.nrqtd}</td>
                     <td>{$value.desproduct}</td>
                     <td>{$value.idproduct}</td>
-                    <td>R${function="formatPrice($order.vltotal)"}</td>
+                    <td>R$ {function="formatPrice($order.vltotal)"}</td>
                 </tr>
                 {/loop}
                 </tbody>
@@ -119,15 +119,15 @@
                 <table class="table">
                 <tbody><tr>
                     <th style="width:50%">Subtotal:</th>
-                    <td>R${function="formatPrice($cart.vlsubtotal)"}</td>
+                    <td>R$ {function="formatPrice($cart.vlsubtotal)"}</td>
                 </tr>
                 <tr>
                     <th>Frete:</th>
-                    <td>R${function="formatPrice($cart.vlfreight)"}</td>
+                    <td>R$ {function="formatPrice($cart.vlfreight)"}</td>
                 </tr>
                 <tr>
                     <th>Total:</th>
-                    <td>R${function="formatPrice($cart.vltotal)"}</td>
+                    <td>R$ {function="formatPrice($cart.vltotal)"}</td>
                 </tr>
                 </tbody></table>
             </div>

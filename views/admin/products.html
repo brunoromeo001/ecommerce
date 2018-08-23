@@ -51,11 +51,11 @@
                   <tr>
                     <td>{$value.idproduct}</td>
                     <td>{$value.desproduct}</td>
-                    <td><b>R$ </b> {function="formatPrice($value.vlprice)"}</td>
-                    <td>{$value.vlwidth} <b>cm </b></td>
-                    <td>{$value.vlheight} <b>cm </b></td>
-                    <td>{$value.vllength} <b>cm </b></td>
-                    <td>{$value.vlweight} <b>kg </b></td>
+                    <td>R$ {function="formatPrice($value.vlprice)"}</td>
+                    <td>{$value.vlwidth} cm </td>
+                    <td>{$value.vlheight} cm </td>
+                    <td>{$value.vllength} cm </td>
+                    <td>{$value.vlweight} kg </td>
                     <td>
                       <a href="/admin/products/{$value.idproduct}" class="btn btn-primary btn-xs"><i class="fa fa-edit"></i> Editar</a>
                       <a href="/admin/products/{$value.idproduct}/delete" onclick="return confirm('Deseja realmente excluir este registro?')" class="btn btn-danger btn-xs"><i class="fa fa-trash"></i> Excluir</a>

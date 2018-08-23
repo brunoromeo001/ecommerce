@@ -711,7 +711,7 @@ $app->post("/profile/change-password", function(){
 		exit;
 	}
 	
-	$user->setdespassword($_POST['new_pass']);
+	$user->setdespassword(User::getPasswordHash($_POST['new_pass']));
 	
 	$user->update();
 	

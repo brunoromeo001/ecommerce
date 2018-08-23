@@ -18,7 +18,7 @@
             <div class="col-xs-12">
             <h2 class="page-header">
                 <img src="/res/site/img/logo.png" alt="Logo">
-                <small class="pull-right">Date: <?php echo date('d/m/Y'); ?></small>
+                <small class="pull-right">Data: <?php echo date('d/m/Y'); ?></small>
             </h2>
             </div>
             <!-- /.col -->
@@ -75,7 +75,7 @@
                     <td><?php echo htmlspecialchars( $value1["nrqtd"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
                     <td><?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
-                    <td>R$<?php echo formatPrice($order["vltotal"]); ?></td>
+                    <td>R$ <?php echo formatPrice($order["vltotal"]); ?></td>
                 </tr>
                 <?php } ?>
                 </tbody>
@@ -119,15 +119,15 @@
                 <table class="table">
                 <tbody><tr>
                     <th style="width:50%">Subtotal:</th>
-                    <td>R$<?php echo formatPrice($cart["vlsubtotal"]); ?></td>
+                    <td>R$ <?php echo formatPrice($cart["vlsubtotal"]); ?></td>
                 </tr>
                 <tr>
                     <th>Frete:</th>
-                    <td>R$<?php echo formatPrice($cart["vlfreight"]); ?></td>
+                    <td>R$ <?php echo formatPrice($cart["vlfreight"]); ?></td>
                 </tr>
                 <tr>
                     <th>Total:</th>
-                    <td>R$<?php echo formatPrice($cart["vltotal"]); ?></td>
+                    <td>R$ <?php echo formatPrice($cart["vltotal"]); ?></td>
                 </tr>
                 </tbody></table>
             </div>
