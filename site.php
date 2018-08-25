@@ -413,15 +413,10 @@ $app->get("/forgot", function() {
 });
 
 $app->post("/forgot", function(){
-			
-/* 	$user = User::getForgot($_POST["email"], false);
-	
-	header("Location: /forgot/sent");
-	exit;  */
-	
+
 	try{
     		
-    	User::login(User::getForgot($_POST["email"], false));
+    	$user = User::getForgot($_POST["email"], false);
     		
     } catch(Exception $e){
     			
@@ -429,6 +424,9 @@ $app->post("/forgot", function(){
     	header("Location: /forgot");
     	exit;
     } 
+	
+	header("Location: /forgot/sent");
+	exit;  
 });
 
 $app->get("/forgot/sent", function(){

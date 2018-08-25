@@ -203,7 +203,8 @@ class User extends Model{
 			
 			$results2 = $sql->select("CALL sp_userspasswordsrecoveries_create(:iduser, :desip)", array(
 				":iduser"=>$data["iduser"],
-				":desip"=>$_SERVER["REMOTE_ADDR"]
+				":desip"=>$this->getip()
+				//":desip"=>$_SERVER["REMOTE_ADDR"]$this->getinadmin()
 			));
 			
 			if(count($results2) === 0){
