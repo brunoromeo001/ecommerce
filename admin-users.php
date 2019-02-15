@@ -169,4 +169,163 @@ $app->post("/admin/users/:iduser", function($iduser){
 			
 });
 
+$app->get("/admin/profile", function(){    	
+	
+	User::verifyLogin();
+	
+	$user = User::getFromSession();
+	
+	$page = new PageAdmin();	
+			
+	$page->setTpl("profile", [
+		"user"=>$user->getValues(),
+		'profileMsg'=>User::getSuccess(),
+		'profileError'=>User::getError()
+	]);	
+	
+}); 
+
+$app->post("/admin/profile", function(){
+	
+	User::verifyLogin();
+	
+	if (!isset($_POST['desperson']) || $_POST['desperson'] === ''){
+		
+		User::setError("Preencha o seu nome.");
+		header("Location: /admin/profile");
+		exit;
+	}	
+	
+	if (!isset($_POST['desemail']) || $_POST['desemail'] === ''){
+		
+		User::setError("Preencha o seu e-mail.");
+		header("Location: /admin/profile");
+		exit;
+	}
+	
+	$user =  User::getFromSession();
+	
+	if ($_POST['desemail'] !== $user->getdesemail()){
+		
+		if (User::checkLoginExist($_POST['desemail']) === true){
+			
+			User::setError("Este endereço de e-mail já está cadastrado.");
+			header("Location: /admin/profile");
+		exit;
+		}
+	}
+		
+	$_POST['inadmin'] = $user->getinadmin();
+	$_POST['despassword'] = $user->getinadmin();
+	$_POST['deslogin'] = $_POST['desemail'];
+	
+	$user->setData($_POST);
+	
+	$user->save();
+	
+	$user::setSuccess("Dados alterados com sucesso!");
+	
+	header("Location: /admin/profile");
+	exit;
+});
+
+//ROTA PARA MOSTRA O FORMULÁRIOD DE CADASTRO DO FUNCIONÁRIO
+$app->get("/admin/profile/change-password", function(){
+	
+	User::verifyLogin();		
+	
+	$page = new PageAdmin();
+	
+	$page->setTpl("/admin/profile-change-password", [		
+		"alterarSenhaError"=>User::getError(),		
+		"alterarSenhaSuccess"=>User::getSuccess()
+	]);
+	
+});
+
+$app->post("/admin/profile/alterar-senha", function(){
+	
+	User::verifyLogin();
+	
+	if (!isset($_POST['senha_atual']) || $_POST['senha_atual'] === ''){
+		
+		User::setError("Digite a senha atual.");
+		header("Location: /admin/profile/alterar-senha");
+		exit;
+	}
+	
+	if (!isset($_POST['nova_senha']) || $_POST['nova_senha'] === ''){
+		
+		User::setError("Digite a nova senha.");
+		header("Location: /admin/profile/alterar-senha");
+		exit;
+	}
+	
+	if (!isset($_POST['nova_senha_confirma']) || $_POST['nova_senha_confirma'] === ''){
+		
+		User::setError("Confirme a nova senha.");
+		header("Location: /admin/profile/alterar-senha");
+		exit;
+	}
+	
+	if ($_POST['senha_atual'] === $_POST['nova_senha']){
+		
+		User::setError("A sua nova senha deve ser diferente da senha atual.");
+		header("Location: /admin/profile/alterar-senha");
+		exit;
+	}
+	
+	if ($_POST['nova_senha'] != $_POST['nova_senha_confirma']){
+		
+		User::setError("A confirmação da nova senha não pode ser diferente da mesma.");
+		header("Location: /admin/profile/alterar-senha");
+		exit;
+	}
+	
+	$user = User::getFromSession();
+	
+	if (!password_verify($_POST['senha_atual'], $user->getsenha())){
+		
+		User::setError("A senha atual está inválida.");
+		header("Location: /admin/profile/alterar-senha");
+		exit;
+	}
+	
+	$user->setsenha($_POST['nova_senha']);
+	
+	$user->update();
+	
+	User::setSuccess("Senha alterada com sucesso.");
+	
+	header("Location: /admin/profile/alterar-senha");
+	exit;
+});
+
+//ROTA PARA MOSTRA O FORMULÁRIOD DE CADASTRO DO FUNCIONÁRIO
+$app->get("/admin/profile/photo", function(){
+	
+	User::verifyLogin();		
+	
+	$page = new PageAdmin();
+	
+	$page->setTpl("/admin/profile-photo", [		
+		
+	]);
+	
+});
+
+$app->post("/admin/profile/foto", function(){
+	
+	User::verifyLogin();		
+	
+	$user = new user();
+	
+	$user->setPhoto($_FILES["upload_image"]);
+	
+	
+	 
+	
+	
+});
+
 ?>
