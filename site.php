@@ -334,9 +334,7 @@ $app->post("/login", function(){
 		header("Location: /login");
 		exit;
 	}
-	
-	//User::login($_POST['login'], $_POST['password']);
-	
+			
 	header("Location: /checkout");
 	exit;	
 });
@@ -720,31 +718,3 @@ $app->post("/profile/change-password", function(){
 });
 
 ?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

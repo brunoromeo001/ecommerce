@@ -24,16 +24,28 @@ $app->get("/admin/login", function() {
 		"footer"=>false
 	]);
 	
-	$page->setTpl("login");
+	$page->setTpl("login", [
+		"error"=>User::getError()
+	]);
 
 });
 
 $app->post("/admin/login", function(){
 	
-	User::login($_POST["login"], $_POST["password"]);
+	try{
+		
+		User::login($_POST["login"], $_POST["password"]);
 	
-	header("Location: /admin");	
+	}catch(Exception $e){
+
+		User::setError($e->getMessage());
+		header("Location: /admin/login");
+		exit;
+	}
+	
+	header("Location: /admin");
 	exit;
+	
 });
 
 $app->get("/admin/logout", function(){
