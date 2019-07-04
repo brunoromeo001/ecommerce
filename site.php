@@ -395,6 +395,8 @@ $app->post("/register", function(){
 	$user->save();
 	
 	User::login($_POST['email'], $_POST['password']);
+
+	$_SESSION['registerValues'] = NULL; 
 	
 	header('Location: /checkout');
 	exit;
