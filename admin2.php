@@ -64,13 +64,24 @@ $app->get("/admin/forgot", function() {
 		"footer"=>false
 	]);
 	
-	$page->setTpl("forgot");
+	$page->setTpl("forgot", [
+		"error"=>User::getError()
+	]);
 
 });
 
 $app->post("/admin/forgot", function(){
-			
-	$user = User::getForgot($_POST["email"]);
+				
+	try{
+		
+		$user = User::getForgot($_POST["email"]);				
+		
+	} catch(Exception $e){
+		
+		User::setError($e->getMessage());
+		header("Location: /admin/forgot");
+		exit;
+	}
 	
 	header("Location: /admin/forgot/sent");
 	exit;

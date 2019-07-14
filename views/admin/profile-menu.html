@@ -1,6 +1,21 @@
 <div class="list-group" id="menu">
-	<a href="/admin/profile" class="list-group-item list-group-item-action">Editar Dados</a>
-	<a href="/admin/profile/change-password" class="list-group-item list-group-item-action">Alterar Senha</a>	
-	<a href="/admin/profile/photo" class="list-group-item list-group-item-action">Foto</a>	
+	
+	{if="$pageName == 'profile'"}
+		<a href="/admin/profile" class="list-group-item list-group-item-action active">Editar Dados</a>
+	{else}
+		<a href="/admin/profile" class="list-group-item list-group-item-action">Editar Dados</a>
+	{/if}
+
+	{if="$pageName == 'change-password'"}
+		<a href="/admin/profile/change-password" class="list-group-item list-group-item-action active">Alterar Senha</a>	
+	{else}
+		<a href="/admin/profile/change-password" class="list-group-item list-group-item-action">Alterar Senha</a>	
+	{/if}
+
+	{if="$pageName == 'photo'"}
+		<a href="/admin/profile/photo" class="list-group-item list-group-item-action active">Foto</a>
+	{else}
+		<a href="/admin/profile/photo" class="list-group-item list-group-item-action">Foto</a>
+	{/if}
 	<a href="/form_teste/logout" class="list-group-item list-group-item-action">Sair</a>
 </div>
