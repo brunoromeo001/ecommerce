@@ -31,7 +31,8 @@ $app->get("/admin/categories", function(){
 				'page'=>$x + 1,
 				'search'=>$search
 			]),
-			'text'=>$x + 1
+			'text'=>$x + 1,
+			'active'=>(($x + 1) == $page)
 		]);
 	}	
 			

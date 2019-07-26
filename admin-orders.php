@@ -109,7 +109,8 @@ $app->get("/admin/orders", function(){
 				'page'=>$x + 1,
 				'search'=>$search
 			]),
-			'text'=>$x + 1
+			'text'=>$x + 1,
+			'active'=>(($x + 1) == $page)
 		]);
 	}
 			

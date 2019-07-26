@@ -162,7 +162,7 @@ class Product extends Model{
 		]);
 	}
 	
-	public static function getPage($page = 1, $itemsParPage = 10)
+	public static function getPage($page = 1, $itemsParPage = 5)
 	{
 		
 		$start = ($page - 1) * $itemsParPage;
@@ -185,7 +185,7 @@ class Product extends Model{
 		];
 	}
 	
-	public static function getPageSearch($search, $page = 1, $itemsParPage = 10)
+	public static function getPageSearch($search, $page = 1, $itemsParPage = 5)
 	{
 		
 		$start = ($page - 1) * $itemsParPage;
@@ -219,6 +219,8 @@ class Product extends Model{
 			
 		return $count;
 	}
+
+	
 }
 ?>
 

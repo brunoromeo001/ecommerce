@@ -21,16 +21,19 @@ $app->get("/admin/products", function(){
 		$pagination = Product::getPage($page);
 	}		
 	
-	$pages = [];
-	
+	$pages = [];	
+	$class = '';
+
 	for ($x = 0; $x < $pagination['pages']; $x ++){
 		
 		array_push($pages, [
 			'href'=>'/admin/products?'.http_build_query([
 				'page'=>$x + 1,
-				'search'=>$search
+				'search'=>$search,
 			]),
-			'text'=>$x + 1
+			'text'=>$x + 1,
+			'active'=>(($x +1) == $page)
+			
 		]);
 	}	
 	
