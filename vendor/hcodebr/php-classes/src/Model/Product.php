@@ -220,6 +220,14 @@ class Product extends Model{
 		return $count;
 	}
 
+	public static function lastProductsAdd(){
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_products ORDER BY dtregister DESC LIMIT 4");
+
+		return $results;
+	}
 	
 }
 ?>

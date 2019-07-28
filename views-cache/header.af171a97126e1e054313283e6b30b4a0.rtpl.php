@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!DOCTYPE html>
 <!--
 This is a starter template page. Use this page to start your new project from
 scratch. This page gets rid of all links and provides the needed markup only.
@@ -178,7 +178,7 @@ desired effect
               <!-- The user image in the navbar-->
               <img src="/res/admin/dist/img/user-padrao.jpg" class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
-              <span class="hidden-xs">{function="getUserName()"} </span>
+              <span class="hidden-xs"><?php echo getUserName(); ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
@@ -186,7 +186,7 @@ desired effect
                 <img src="/res/admin/dist/img/user-padrao.jpg" class="img-circle" alt="User Image">
 
                 <p>
-                 {function="getUserName()"} - Administrador
+                 <?php echo getUserName(); ?> - Administrador
                   <small>Member since Nov. 2012</small>
                 </p>
               </li>
@@ -236,7 +236,7 @@ desired effect
           <img src="/res/admin/dist/img/user-padrao.jpg" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
-          <p>{function="getUserName()"} </p>
+          <p><?php echo getUserName(); ?> </p>
           <!-- Status -->
           <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
         </div>
@@ -258,35 +258,35 @@ desired effect
       <ul class="sidebar-menu">
       <li class="header">HEADER</li>
         <!-- Optionally, you can add icons to the links -->
-      {if="$pageName == ''"}
+      <?php if( $pageName == '' ){ ?>
         <li class="active"> <a href="/admin"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a> </li>
-      {else}
+      <?php }else{ ?>
         <li> <a href="/admin"> <i class="fa fa-dashboard"></i> <span>Dashboard</span> </a> </li>
-      {/if}
+      <?php } ?>
         
-        {if="$pageName == 'users'"}
+        <?php if( $pageName == 'users' ){ ?>
         <li class="active"><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
-      {else}
+      <?php }else{ ?>
         <li><a href="/admin/users"><i class="fa fa-users"></i> <span>Usuários</span></a></li>
-      {/if}
+      <?php } ?>
       
-      {if="$pageName == 'categories'"}
+      <?php if( $pageName == 'categories' ){ ?>
         <li class="active"><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
-      {else}
+      <?php }else{ ?>
         <li><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
-      {/if}
+      <?php } ?>
       
-      {if="$pageName == 'products'"}
+      <?php if( $pageName == 'products' ){ ?>
         <li class="active"><a href="/admin/products"><i class="fa fa-link"></i> <span>Produtos</span></a></li>
-      {else}
+      <?php }else{ ?>
         <li><a href="/admin/products"><i class="fa fa-link"></i> <span>Produtos</span></a></li>
-      {/if}
+      <?php } ?>
       
-      {if="$pageName == 'orders'"}
+      <?php if( $pageName == 'orders' ){ ?>
         <li class="active"><a href="/admin/orders"><i class="fa fa-shopping-cart"></i> <span>Pedidos</span></a></li>       
-      {else}
+      <?php }else{ ?>
         <li><a href="/admin/orders"><i class="fa fa-shopping-cart"></i> <span>Pedidos</span></a></li>        
-      {/if}
+      <?php } ?>
       </ul>
       <!-- /.sidebar-menu -->
     </section>

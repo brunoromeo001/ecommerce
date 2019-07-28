@@ -133,7 +133,7 @@ class User extends Model{
 			":inadmin"=>$this->getinadmin()
 		));
 		
-		$this->setData($results[0]);
+		$this->setData($results[00]);
 	}
 	
 	public function get($iduser)
@@ -440,6 +440,27 @@ class User extends Model{
 			'total'=>(int)$resultTotal[0]["nrtotal"],
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsParPage)
 		];
+	}
+
+
+	public static function usersCountAdm(){
+
+		$sql = new Sql();
+
+		$result = $sql->select("SELECT COUNT(*) AS nrtotal FROM tb_users WHERE inadmin = 1");
+
+		return $result[0];
+
+	}
+
+	public static function usersCount(){
+
+		$sql = new Sql();
+
+		$result = $sql->select("SELECT COUNT(*) AS nrtotal FROM tb_users WHERE inadmin = 0");
+
+		return $result[0];
+		
 	}
 }
 ?>

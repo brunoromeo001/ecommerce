@@ -37,6 +37,7 @@
                 <thead>
                   <tr>
                     <th style="width: 10px">#</th>
+                    <th>Foto</th>
                     <th>Nome da Produto</th>
                     <th>Preço</th>
                     <th>Largura</th>
@@ -50,6 +51,7 @@
                   {loop="$products"}
                   <tr>
                     <td>{$value.idproduct}</td>
+                    <td><img class="img-sm" src="/res/site/img/products/{$value.idproduct}.jpg" onerror="this.src='/res/dist/img/default-50x50.gif';" alt="Foto Produto"></td>
                     <td>{$value.desproduct}</td>
                     <td>R$ {function="formatPrice($value.vlprice)"}</td>
                     <td>{$value.vlwidth} cm </td>

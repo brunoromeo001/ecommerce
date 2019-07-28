@@ -196,6 +196,16 @@ class Order extends Model{
 			'pages'=>ceil($resultTotal[0]["nrtotal"] / $itemsParPage)
 		];
 	}
+
+	public static function lastOrdersAdd(){
+
+		$sql = new Sql();
+
+		$results = $sql->select("SELECT * FROM tb_orders ORDER BY dtregister DESC LIMIT 10");
+
+		return $results;
+
+	}
 }
 ?>
 

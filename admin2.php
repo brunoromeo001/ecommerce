@@ -2,19 +2,26 @@
 
 use \Hcode\PageAdmin;
 use \Hcode\Model\User;
+use \Hcode\Model\Product;
+use \Hcode\Model\Order;
 
 $app->get('/admin/', function() {
-
-	// Método para verificar o Login
-	User::verifyLogin();
-    
-    // Carrega a página header.html pelo método mágico construct
-	$page = new PageAdmin();
 	
-	// Carrega a pagina index.html. Não precisa colocar html porque é a padrão.
-	$page->setTpl("index");
-
-	//Por ultimo carrega o arquivo footer.html pelo método mágico destruct. 
+	User::verifyLogin();    
+    
+	$lastProducts	= Product::lastProductsAdd();
+	$lastOrders		= Order::lastOrdersAdd();
+	$usersCount		= User::usersCount();
+	$usersCountAdm 	= User::usersCountAdm();
+	
+	$page = new PageAdmin();	
+	
+	$page->setTpl("index", [		
+		'usersCount'=>$usersCount,
+		'usersCountAdm'=>$usersCountAdm,
+		'lastOrders'=>$lastOrders,
+		'lastProducts'=>$lastProducts
+	]);	
 
 });
 $app->get("/admin/login", function() {

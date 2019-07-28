@@ -1,4 +1,4 @@
-  <!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?>  <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
@@ -50,7 +50,7 @@
   
               <div class="info-box-content">
                 <span class="info-box-text">Administradores</span>
-                <span class="info-box-number">{$usersCountAdm.nrtotal}</span>
+                <span class="info-box-number"><?php echo htmlspecialchars( $usersCountAdm["nrtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -62,7 +62,7 @@
   
               <div class="info-box-content">
                 <span class="info-box-text">Membros</span>
-                <span class="info-box-number">{$usersCount.nrtotal}</span>
+                <span class="info-box-number"><?php echo htmlspecialchars( $usersCount["nrtotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
               </div>
               <!-- /.info-box-content -->
             </div>
@@ -284,16 +284,16 @@
                       <th>Valor</th>
                     </tr>
                     </thead>
-                    {loop="$lastOrder"}
+                    <?php $counter1=-1;  if( isset($lastOrder) && ( is_array($lastOrder) || $lastOrder instanceof Traversable ) && sizeof($lastOrder) ) foreach( $lastOrder as $key1 => $value1 ){ $counter1++; ?>
                     <tbody>
                     <tr>
-                      <td><a href="">{$value.idorder}</a></td>
+                      <td><a href=""><?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></td>
                       <td>{value.desproduct}</td>
                       <td><span class="label label-success">Shipped</span></td>
                       <td> </td>
                     </tr>                    
                     </tbody>
-                    {/loop}
+                    <?php } ?>
                   </table>
                 </div>
                 <!-- /.table-responsive -->
@@ -393,20 +393,20 @@
               <!-- /.box-header -->
               <div class="box-body">
                 <ul class="products-list product-list-in-box">
-                  {loop="$lastProducts"}
+                  <?php $counter1=-1;  if( isset($lastProducts) && ( is_array($lastProducts) || $lastProducts instanceof Traversable ) && sizeof($lastProducts) ) foreach( $lastProducts as $key1 => $value1 ){ $counter1++; ?>
                   <li class="item">
                     <div class="product-img">
-                      <img src="/res/site/img/products/{$value.idproduct}.jpg" onerror="this.src='/res/dist/img/default-50x50.gif';" alt="Foto Produto">
+                      <img src="/res/site/img/products/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>.jpg" onerror="this.src='/res/dist/img/default-50x50.gif';" alt="Foto Produto">
                     </div>
                     <div class="product-info">
-                      <a href="/admin/products/{$value.idproduct}" class="product-title">{$value.desproduct}
-                        <span class="label label-warning pull-right">R$ {function="formatPrice($value.vlprice)"}</span></a>
+                      <a href="/admin/products/<?php echo htmlspecialchars( $value1["idproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="product-title"><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?>
+                        <span class="label label-warning pull-right">R$ <?php echo formatPrice($value1["vlprice"]); ?></span></a>
                       <span class="product-description">
                         Descrição em breve...
                       </span>
                     </div>                    
                   </li>  
-                  {/loop}          
+                  <?php } ?>          
                 </ul>
               </div>
               <!-- /.box-body -->
