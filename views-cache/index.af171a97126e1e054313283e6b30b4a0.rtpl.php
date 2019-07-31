@@ -264,8 +264,7 @@
             <!-- TABLE: LATEST ORDERS -->
             <div class="box box-info">
               <div class="box-header with-border">
-                <h3 class="box-title">Últimos pedidos</h3>
-  
+                <h3 class="box-title">Últimos pedidos</h3>  
                 <div class="box-tools pull-right">
                   <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
                   </button>
@@ -284,16 +283,27 @@
                       <th>Valor</th>
                     </tr>
                     </thead>
-                    <?php $counter1=-1;  if( isset($lastOrder) && ( is_array($lastOrder) || $lastOrder instanceof Traversable ) && sizeof($lastOrder) ) foreach( $lastOrder as $key1 => $value1 ){ $counter1++; ?>
                     <tbody>
+                    <?php $counter1=-1;  if( isset($lastOrders) && ( is_array($lastOrders) || $lastOrders instanceof Traversable ) && sizeof($lastOrders) ) foreach( $lastOrders as $key1 => $value1 ){ $counter1++; ?>
                     <tr>
-                      <td><a href=""><?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></td>
-                      <td>{value.desproduct}</td>
-                      <td><span class="label label-success">Shipped</span></td>
-                      <td> </td>
-                    </tr>                    
-                    </tbody>
+                      <td><a href="/admin/orders/<?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"><?php echo htmlspecialchars( $value1["idorder"], ENT_COMPAT, 'UTF-8', FALSE ); ?></a></td>
+                      <td><?php echo htmlspecialchars( $value1["desproduct"], ENT_COMPAT, 'UTF-8', FALSE ); ?></td>
+                      <td>
+                      <?php if( $value1["idstatus"]==1 ){ ?>
+                        <span class="label label-warning"><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                       <?php }elseif( $value1["idstatus"]==2 ){ ?>
+                        <span class="label label-info"><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                       <?php }elseif( $value1["idstatus"]==3 ){ ?>
+                        <span class="label label-primary"><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                       <?php }elseif( $value1["idstatus"]==4 ){ ?>
+                        <span class="label label-success"><?php echo htmlspecialchars( $value1["desstatus"], ENT_COMPAT, 'UTF-8', FALSE ); ?></span>
+                      <?php } ?>
+                      </td>
+                      <td>R$ <?php echo formatPrice($value1["vlprice"]); ?> </td>
+                    </tr>
                     <?php } ?>
+                    </tbody>
+                    
                   </table>
                 </div>
                 <!-- /.table-responsive -->

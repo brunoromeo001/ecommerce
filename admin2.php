@@ -9,10 +9,10 @@ $app->get('/admin/', function() {
 	
 	User::verifyLogin();    
     
-	$lastProducts	= Product::lastProductsAdd();
-	$lastOrders		= Order::lastOrdersAdd();
 	$usersCount		= User::usersCount();
 	$usersCountAdm 	= User::usersCountAdm();
+	$lastOrders		= Order::lastOrdersAdd();
+	$lastProducts	= Product::lastProductsAdd();
 	
 	$page = new PageAdmin();	
 	

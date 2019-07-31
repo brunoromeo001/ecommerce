@@ -201,7 +201,15 @@ class Order extends Model{
 
 		$sql = new Sql();
 
-		$results = $sql->select("SELECT * FROM tb_orders ORDER BY dtregister DESC LIMIT 10");
+		$results = $sql->select("SELECT *
+			FROM tb_orders a
+			INNER JOIN tb_ordersstatus b USING(idstatus)
+			INNER JOIN tb_carts c USING(idcart)
+			INNER JOIN tb_cartsproducts d USING(idcart)
+			INNER JOIN tb_products e USING(idproduct)
+			ORDER BY a.dtregister DESC
+			LIMIT 10;
+		");
 
 		return $results;
 

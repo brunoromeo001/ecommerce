@@ -234,7 +234,7 @@ $app->post("/checkout", function(){
 	$cart = Cart::getFromSession();
 	
 	$cart->getCalculateTotal();
-	
+		
 	$order = new Order();
 	
 	$order->setData([
@@ -246,7 +246,7 @@ $app->post("/checkout", function(){
 	]);
 	
 	$order->save();
-	
+		
 	switch ((int)$_POST['payment-method']){
 		
 		case 1:
