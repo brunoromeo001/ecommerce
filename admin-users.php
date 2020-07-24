@@ -320,12 +320,7 @@ $app->post("/admin/profile/foto", function(){
 	
 	$user = new user();
 	
-	$user->setPhoto($_FILES["upload_image"]);
-	
-	
-	 
-	
-	
+	$user->setPhoto($_FILES["upload_image"]);	
 });
 
 ?>

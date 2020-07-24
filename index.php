@@ -18,32 +18,4 @@ require_once("admin-orders.php");
 
 $app->run();
 
- ?>
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
- 
+?>
