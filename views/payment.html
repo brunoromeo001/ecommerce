@@ -270,3 +270,23 @@
     PagSeguroDirectPayment.setSessionId('{$pagseguro.id}');
 
 </script>
+<script>
+
+    scripts.push(function(){
+        PagSeguroDirectPayment.getPaymentMethods({
+            amount: parseFloat("{$order.vltotal}"),
+            success: function(response) {
+                // Retorna os meios de pagamento disponíveis.
+                console.log('response');
+            },
+            error: function(response) {
+                // Callback para chamadas que falharam.
+                console.log('response');
+            },
+            complete: function(response) {
+                // Callback para todas chamadas.
+                console.log('response');
+            }
+        });
+    });
+</script>

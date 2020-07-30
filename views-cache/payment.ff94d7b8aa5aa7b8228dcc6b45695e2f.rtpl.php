@@ -270,3 +270,23 @@
     PagSeguroDirectPayment.setSessionId('<?php echo htmlspecialchars( $pagseguro["id"], ENT_COMPAT, 'UTF-8', FALSE ); ?>');
 
 </script>
+<script>
+
+    scripts.push(function(){
+        PagSeguroDirectPayment.getPaymentMethods({
+            amount: parseFloat("<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
+            success: function(response) {
+                // Retorna os meios de pagamento disponíveis.
+                console.log('response');
+            },
+            error: function(response) {
+                // Callback para chamadas que falharam.
+                console.log('response');
+            },
+            complete: function(response) {
+                // Callback para todas chamadas.
+                console.log('response');
+            }
+        });
+    });
+</script>

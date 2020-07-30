@@ -4,27 +4,27 @@ namespace Hcode\PagSeguro;
 
 class Config{
 
-    const SENDBOX = true;
+    const SANDBOX = true;
 
-    const SENDBOX_EMAIL = "brunogfvot@hotmail.com";
+    const SANDBOX_EMAIL = "brunogfvot@hotmail.com";
     const PRODUCTION_EMAIL = "contato@brunoromeo.com.br";
 
-    const SENDBOX_TOKEN = "BAAF3380E44640FE9A95D1AA24A5DA9A";
-    const PRODUCTION_TOKEN = "f527f844-19c2-4082-9c27-11d89c95cb590edb9e904b5189a43b828a4b4a25ac2ef4e6-c5ef-453b-b5d6-02813ec0d8e0";
+    const SANDBOX_TOKEN = "BAAF3380E44640FE9A95D1AA24A5DA9A";
+    const PRODUCTION_TOKEN = "8e01c5b7-d206-403c-a84b-5a03b985c3906e13ba604ddda553d1cbbeae99609b5569de-4fe6-441c-81bb-5aef24ece26d";
 
-    const SENDBOX_SESSIONS = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
+    const SANDBOX_SESSIONS = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
     const PRODUCTION_SESSIONS = "https://ws.pagseguro.uol.com.br/v2/sessions";
-
-    const SENDBOX_URL_JS = 'https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js';
-    const PRODUCTION__URL_JS = 'https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js';
+    
+    const SANDBOX_URL_JS = "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
+    const PRODUCTION_URL_JS = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
 
     public static function getAuthentication():array
     {
-        if (Config::SENDBOX === true){
+        if (Config::SANDBOX === true){
 
             return [
-                "email"=>Config::SENDBOX_EMAIL,
-                "token"=>Config::SENDBOX_TOKEN
+                "email"=>Config::SANDBOX_EMAIL,
+                "token"=>Config::SANDBOX_TOKEN
             ];
         
         } else {
@@ -40,14 +40,14 @@ class Config{
     public static function getUrlSessions():string
     {
 
-        return (Config::SENDBOX == true) ? Config::SENDBOX_SESSIONS : Config::PRODUCTION_SESSIONS;
+        return (Config::SANDBOX == true) ? Config::SANDBOX_SESSIONS : Config::PRODUCTION_SESSIONS;
 
     }
 
     public static function getUrlJS()
     {
 
-        return (Config::SENDBOX == true) ? Config::SENDBOX_URL_JS : Config::PRODUCTION_URL_JS;
+        return (Config::SANDBOX == true) ? Config::SANDBOX_URL_JS : Config::PRODUCTION_URL_JS;
 
     }
 
