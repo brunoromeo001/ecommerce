@@ -4,7 +4,11 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
+<<<<<<< HEAD
     "content-hash": "04bec140aa8368642c3a6083e072497b",
+=======
+    "content-hash": "98c7a8b413ba752720bfdbf6ba8a4ed9",
+>>>>>>> 01466b4d919d659050cd3f988ed8e0953256bc61
     "packages": [
         {
             "name": "guzzlehttp/guzzle",
@@ -211,6 +215,7 @@
         },
         {
             "name": "phpmailer/phpmailer",
+<<<<<<< HEAD
             "version": "v6.1.7",
             "source": {
                 "type": "git",
@@ -221,6 +226,18 @@
                 "type": "zip",
                 "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0",
                 "reference": "2c2370ba3df7034f9eb7b8f387c97b52b2ba5ad0",
+=======
+            "version": "v6.1.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/PHPMailer/PHPMailer.git",
+                "reference": "c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3",
+                "reference": "c2796cb1cb99d7717290b48c4e6f32cb6c60b7b3",
+>>>>>>> 01466b4d919d659050cd3f988ed8e0953256bc61
                 "shasum": ""
             },
             "require": {
@@ -269,7 +286,17 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
+<<<<<<< HEAD
             "time": "2020-07-14T18:50:27+00:00"
+=======
+            "funding": [
+                {
+                    "url": "https://github.com/synchro",
+                    "type": "github"
+                }
+            ],
+            "time": "2020-05-27T12:24:03+00:00"
+>>>>>>> 01466b4d919d659050cd3f988ed8e0953256bc61
         },
         {
             "name": "psr/http-client",

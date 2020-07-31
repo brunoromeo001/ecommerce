@@ -7,7 +7,11 @@
         }
     ],
     "require": {
+<<<<<<< HEAD
     	"phpmailer/phpmailer":"~6.1",
+=======
+    	"phpmailer/phpmailer":"6.1.6",
+>>>>>>> 01466b4d919d659050cd3f988ed8e0953256bc61
     	"slim/slim":"2.0",
         "rain/raintpl":"3.0.0",
         "guzzlehttp/guzzle":"*"
