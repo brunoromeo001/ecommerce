@@ -101,7 +101,9 @@ $app->get("/forgot", function() {
 
 	$page = new Page();
 
-	$page->setTpl("forgot");	
+	$page->setTpl("forgot",  [
+		'error'=>User::getError()
+	]);	
 
 });
 

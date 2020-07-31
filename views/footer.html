@@ -73,6 +73,8 @@
    
     <!-- Latest jQuery form server -->
     <script src="https://code.jquery.com/jquery.min.js"></script>
+    <script src="/res/site/js/handlebars.runtime-v4.7.6.js"></script>
+
     
     <!-- Bootstrap JS form CDN -->
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>

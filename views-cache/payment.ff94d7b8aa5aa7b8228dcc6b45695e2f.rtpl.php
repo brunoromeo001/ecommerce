@@ -273,19 +273,49 @@
 <script>
 
     scripts.push(function(){
+
+        function showError(error){
+
+            $('#alert-error span.msg').text(error);
+            $('#alert-error').removeClass('hide');
+        }
+
         PagSeguroDirectPayment.getPaymentMethods({
             amount: parseFloat("<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
             success: function(response) {
                 // Retorna os meios de pagamento disponíveis.
-                console.log('response');
+                var tplDebit = Handlebars.compile($('#tpl-paymant-debit').html());
+                var tplCredit = Handlebars.compile($('#tpl-paymant-credit').html());
+
+                $.each(response.paymentMethods.ONLINE_DEBIT.options, function(index, option){
+
+                    $('#tab-debito .contents').append(tplDebit({
+                        value: options.name,
+                        image: options.images.MEDIUM.path,
+                        text: options.displayName
+                    }));
+
+                });
+
+                $('#loading').hide();
+
+                $('#payment-methods').removeClass('hide');
             },
+            // Callback para chamadas que falharam.
             error: function(response) {
-                // Callback para chamadas que falharam.
-                console.log('response');
+
+                var errors = [];
+
+                for (var code in response.errors){
+
+                    errors.push(response.erros[code]);
+                }
+                showError(response.errors.toString());
+                
             },
             complete: function(response) {
                 // Callback para todas chamadas.
-                console.log('response');
+                
             }
         });
     });
