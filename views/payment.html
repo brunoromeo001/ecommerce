@@ -355,7 +355,7 @@ PagSeguroDirectPayment.setSessionId('{$pagseguro.id}');
 </script>
 <script>
 
-scripts.push(function () {
+scripts.push(function() {
 
     function showError(error) {
         $('#alert-error span.msg').text(error);
@@ -381,10 +381,10 @@ scripts.push(function () {
 
             $.each(response.paymentMethods.CREDIT_CARD.options, function (index, option) {
 
-            $('#tab-credito .contents').append(tplCredit({
-                value: options.name,
-                image: options.images.MEDIUM.path
-            }));
+                $('#tab-credito .contents').append(tplCredit({
+                    value: options.name,
+                    image: options.images.MEDIUM.path
+                }));
 
             });
 
