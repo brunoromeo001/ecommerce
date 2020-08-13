@@ -147,7 +147,7 @@ class Cart extends Model{
 			FROM tb_cartsproducts a 
 			INNER JOIN tb_products b ON a.idproduct = b.idproduct 
 			WHERE a.idcart = :idcart AND a.dtremoved IS NULL 
-			GROUP BY b.idproduct, b.desproduct, b.vlprice, b.vlwidth, .b.vlheight, b.vllength, b.vlweight, b.desurl
+			GROUP BY b.idproduct, b.desproduct, b.vlprice, b.vlwidth, b.vlheight, b.vllength, b.vlweight, b.desurl
 			ORDER BY b.desproduct
 		", [
 			':idcart'=>$this->getidcart(),
@@ -190,8 +190,12 @@ class Cart extends Model{
 		
 		if($totals['nrqtd'] > 0){
 			
+			if ($totals['vlwidth'] > 99) $totals['vlwidth'] = 99;
+			if ($totals['vlheight'] > 99) $totals['vlheight'] = 99;
+			if ($totals['vllength'] > 99) $totals['vllength'] = 99;
 			if ($totals['vlheight'] < 2) $totals['vlheight'] = 2;
-			if ($totals['vllength'] < 16) $totals['vllength'] = 16;
+			if ($totals['vllength'] < 16) $totals['vllength'] = 16;			
+			if ($totals['vlweight'] > 50) $totals['vlweight'] = 49;
 			
 			$qs = http_build_query([
 				'nCdEmpresa'=>'',

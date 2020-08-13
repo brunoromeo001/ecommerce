@@ -53,4 +53,12 @@ function getCartVlSubTotal()
 	return formatPrice($totals['vlprice']);
 }
 
+function getIdUser()
+{
+	
+	$user = User::getFromSession();
+	
+	return $user->getiduser();
+}
+
 ?>

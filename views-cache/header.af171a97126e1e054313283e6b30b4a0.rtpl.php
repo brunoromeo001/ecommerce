@@ -32,6 +32,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
+  <script>
+    window.scripts = [];
+  </script>
 </head>
 <!--
 BODY TAG OPTIONS:
@@ -92,7 +95,7 @@ desired effect
                     <a href="#">
                       <div class="pull-left">
                         <!-- User Image -->
-                        <img src="/res/admin/dist/img/user-padrao.jpg" class="img-circle" alt="User Image">
+                        <img src='/res/admin/dist/img/user-photo/{function="getIdUser()".jpg' class="img-circle" alt="User Image">
                       </div>
                       <!-- Message title and timestamp -->
                       <h4>
@@ -176,14 +179,14 @@ desired effect
             <!-- Menu Toggle Button -->
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <!-- The user image in the navbar-->
-              <img src="/res/admin/dist/img/user-padrao.jpg" class="user-image" alt="User Image">
+              <img src='/res/admin/dist/img/user-photo/<?php echo getIdUser(); ?>.jpg' onerror="this.src='/res/admin/dist/img/user-padrao.jpg';"  class="user-image" alt="User Image">
               <!-- hidden-xs hides the username on small devices so only the image appears. -->
               <span class="hidden-xs"><?php echo getUserName(); ?> </span>
             </a>
             <ul class="dropdown-menu">
               <!-- The user image in the menu -->
               <li class="user-header">
-                <img src="/res/admin/dist/img/user-padrao.jpg" class="img-circle" alt="User Image">
+                <img src='/res/admin/dist/img/user-photo/<?php echo getIdUser(); ?>.jpg' onerror="this.src='/res/admin/dist/img/user-padrao.jpg';"  class="img-circle" alt="User Image">
 
                 <p>
                  <?php echo getUserName(); ?> - Administrador
@@ -233,7 +236,7 @@ desired effect
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="/res/admin/dist/img/user-padrao.jpg" class="img-circle" alt="User Image">
+          <img src='/res/admin/dist/img/user-photo/<?php echo getIdUser(); ?>.jpg' onerror="this.src='/res/admin/dist/img/user-padrao.jpg';" class="img-circle" alt="User Image">
         </div>
         <div class="pull-left info">
           <p><?php echo getUserName(); ?> </p>
@@ -271,15 +274,15 @@ desired effect
       <?php } ?>
       
       <?php if( $pageName == 'categories' ){ ?>
-        <li class="active"><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
+        <li class="active"><a href="/admin/categories"><i class="fa fa-cog"></i> <span>Categorias</span></a></li>
       <?php }else{ ?>
-        <li><a href="/admin/categories"><i class="fa fa-link"></i> <span>Categorias</span></a></li>
+        <li><a href="/admin/categories"><i class="fa fa-cog"></i> <span>Categorias</span></a></li>
       <?php } ?>
       
       <?php if( $pageName == 'products' ){ ?>
-        <li class="active"><a href="/admin/products"><i class="fa fa-link"></i> <span>Produtos</span></a></li>
+        <li class="active"><a href="/admin/products"><i class="fa fa-gift"></i> <span>Produtos</span></a></li>
       <?php }else{ ?>
-        <li><a href="/admin/products"><i class="fa fa-link"></i> <span>Produtos</span></a></li>
+        <li><a href="/admin/products"><i class="fa fa-gift"></i> <span>Produtos</span></a></li>
       <?php } ?>
       
       <?php if( $pageName == 'orders' ){ ?>

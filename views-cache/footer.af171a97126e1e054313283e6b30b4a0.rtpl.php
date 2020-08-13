@@ -105,10 +105,24 @@
 <script src="/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
 <!-- ChartJS -->
 <script src="/bower_components/chart.js/Chart.js"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/res/dist/js/pages/dashboard2.js"></script>
+
+<script src="/res/admin/dist/js/croppie.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="/res/dist/js/demo.js"></script>
+
+<script>
+  $(function(){
+      if(scripts instanceof Array){
+
+          $.each(scripts, function(index, fn){
+              
+              if(typeof fn === 'function') fn();
+          });
+      }
+
+  });
+
+</script>
 
 
 </body>

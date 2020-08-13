@@ -462,6 +462,77 @@ class User extends Model{
 		return $result[0];
 		
 	}
+
+	public function checkPhoto()
+	{
+		//Método que pega o ID do Usuario em functions.php
+		$usuario = User::getFromSession();
+		
+		if (file_exists(
+			$_SERVER['DOCUMENT_ROOT'] . DIRECTORY_SEPARATOR .
+			"res" . DIRECTORY_SEPARATOR .
+			"admin" . DIRECTORY_SEPARATOR .
+			"dist" . DIRECTORY_SEPARATOR .
+			"img" . DIRECTORY_SEPARATOR .
+			"user-photo" . DIRECTORY_SEPARATOR .
+			$usuario->getiduser() . ".jpg"
+		)){
+			
+			$url = "/res/admin/dist/img/user-photo/" . $usuario->getiduser() . ".jpg";
+		}else{
+			
+			$url = "/res/admindist/img/user-padrao.jpg";
+		}
+		
+		return $this->setuserPhoto($url);
+		
+	}
+	
+	public function getValues()
+	{
+		
+		$this->checkPhoto();
+		
+		$values = parent::getValues();
+		
+		return $values;
+	}
+
+	public function setPhoto($file)
+	{
+		$extension = explode('.', $file['name']);
+		$extension = end($extension);
+		
+		switch ($extension){
+			
+			case "jpg":
+			case "jpeg":
+			$image = imagecreatefromjpeg($file["tmp_name"]);
+			break;
+			
+			case "gif":			
+			$image = imagecreatefromgif($file["tmp_name"]);
+			break;
+			
+			case "png":			
+			$image = imagecreatefrompng($file["tmp_name"]);
+			break;	
+		}
+		
+		$dist = $_SERVER['DOCUMENT_ROOT']. DIRECTORY_SEPARATOR .
+			"res" . DIRECTORY_SEPARATOR .
+			"admin" . DIRECTORY_SEPARATOR .
+			"dist" . DIRECTORY_SEPARATOR .
+			"img" . DIRECTORY_SEPARATOR .
+			"user-photo" . DIRECTORY_SEPARATOR .
+			$this->getiduser() . ".jpg";
+
+		imagejpeg($image, $dist);
+			
+		imagedestroy($image);
+		
+		$this->checkPhoto();
+	}
 }
 ?>
 

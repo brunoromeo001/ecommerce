@@ -1,4 +1,4 @@
-<!-- Content Wrapper. Contains page content -->
+<?php if(!class_exists('Rain\Tpl')){exit;}?><!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
@@ -21,13 +21,13 @@
 					<div class="box-body">
 						<div class="row">                
 							<div class="col-md-3">						
-								{include="profile-menu"}
+								<?php require $this->checkTemplate("profile-menu");?>
 							</div>
 							
 							<div class="col-md-9">                                								
 								<div class="row">
 									<div class="col-md-4">
-										<img id='img-upload' src="{$user.userPhoto}" class="img-thumbnail"  />
+										<img id='img-upload' src="<?php echo htmlspecialchars( $user["userPhoto"], ENT_COMPAT, 'UTF-8', FALSE ); ?>" class="img-thumbnail"  />
 									</div>										
 									<div class="col-md-8">
 										<div class="form-group">
@@ -39,7 +39,7 @@
 											<div class="box-body">
 												<img class="img-responsive" id="image-preview" src="" >
 											</div>
-											<input type="text" class="form-control" name="id_user" value="{function="getIdUser()"}" style="display: none;" />	
+											<input type="text" class="form-control" name="id_user" value="<?php echo getIdUser(); ?>" style="display: none;" />	
 										</div>
 									</div>
 								</div>																	

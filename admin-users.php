@@ -307,20 +307,42 @@ $app->get("/admin/profile/photo", function(){
 	User::verifyLogin();		
 	
 	$page = new PageAdmin();
+
+	$user = new User();
 	
 	$page->setTpl("/admin/profile-photo", [		
-		
+		"user"=>$user->getValues(),
+		"photoSuccess"=>User::getSuccess(),
+		"photoError"=>User::getError()
 	]);
 	
 });
 
-$app->post("/admin/profile/foto", function(){
+$app->post("/admin/profile/photo", function(){
+		
+		User::verifyLogin();		
+		
+		$user = new User();
+		
+		$user = User::getFromSession();
+		
+		$data = $_POST["image"];
 	
-	User::verifyLogin();		
+		$image_array_1 = explode(";", $data);
 	
-	$user = new user();
+		$image_array_2 = explode(",", $image_array_1[1]);
+			
+		$data = base64_decode($image_array_2[1]);
+			
+		$imageName = $user->getiduser() . '.jpg';
 	
-	$user->setPhoto($_FILES["upload_image"]);	
+		file_put_contents('res/admin/dist/img/user-photo/'.$imageName, $data);
+	
+		User::setSuccess("Foto alterada com sucesso.");	
+	
+		header("Location: /admin/profile/photo");
+		exit;			
+	
 });
 
 ?>
