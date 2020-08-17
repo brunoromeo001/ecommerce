@@ -10,7 +10,7 @@ class Config{
     const PRODUCTION_EMAIL = "contato@brunoromeo.com.br";
 
     const SANDBOX_TOKEN = "BAAF3380E44640FE9A95D1AA24A5DA9A";
-    const PRODUCTION_TOKEN = "8e01c5b7-d206-403c-a84b-5a03b985c3906e13ba604ddda553d1cbbeae99609b5569de-4fe6-441c-81bb-5aef24ece26d";
+    const PRODUCTION_TOKEN = "08fb43f8-805a-4314-974d-25eab3653226f2c50936450c8d90e30d1f209d59c3b9ca34-506f-429c-8462-efb067c63c49";
 
     const SANDBOX_SESSIONS = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
     const PRODUCTION_SESSIONS = "https://ws.pagseguro.uol.com.br/v2/sessions";

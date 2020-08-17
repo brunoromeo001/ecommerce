@@ -73,7 +73,10 @@ $app->get("/admin/orders/:idorder", function($idorder){
 	
 	$cart = $order->getCart();
 
-	$page = new PageAdmin();	
+	$page = new PageAdmin([
+		'header'=>false,
+		'footer'=>false
+	]);	
 		
 	$page->setTpl("order", [
 		"order"=>$order->getValues(),
@@ -114,7 +117,10 @@ $app->get("/admin/orders", function(){
 		]);
 	}
 			
+	var_dump($pagination);exit;
 	$page = new PageAdmin();
+
+
 	
 	$page->setTpl("orders", [
 		"orders"=>$pagination['data'],

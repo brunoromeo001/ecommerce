@@ -364,8 +364,10 @@ scripts.push(function() {
 
     PagSeguroDirectPayment.getPaymentMethods({        
         amount: parseFloat("<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
+        
         success: function (response) {
             // Retorna os meios de pagamento disponíveis.
+
             var tplDebit = Handlebars.compile($('#tpl-paymant-debit').html());
             var tplCredit = Handlebars.compile($('#tpl-paymant-credit').html());
 
@@ -403,12 +405,12 @@ scripts.push(function() {
 
                 errors.push(response.erros[code]);
             }
-            showError(response.errors.toString());
+            showError(errors.toString());
 
         },
         complete: function (response) {
         // Callback para todas chamadas.
-
+            
         }
     });
 });
