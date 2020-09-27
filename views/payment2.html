@@ -365,7 +365,7 @@ scripts.push(function() {
     PagSeguroDirectPayment.getPaymentMethods({        
         amount: parseFloat("{$order.vltotal}"),
         
-        success: function (response) {
+        success: function(response) {
             // Retorna os meios de pagamento disponíveis.
 
             var tplDebit = Handlebars.compile($('#tpl-payment-debit').html());
@@ -374,9 +374,9 @@ scripts.push(function() {
             $.each(response.paymentMethods.ONLINE_DEBIT.options, function (index, option) {
 
                 $('#tab-debito .contents').append(tplDebit({
-                    value: option.name,
-                    image: option.images.MEDIUM.path,
-                    text: option.displayName
+                    value: options.name,
+                    image: options.images.MEDIUM.path,
+                    text: options.displayName
                 }));
 
             });
@@ -384,8 +384,8 @@ scripts.push(function() {
             $.each(response.paymentMethods.CREDIT_CARD.options, function (index, option) {
 
                 $('#tab-credito .contents').append(tplCredit({
-                    value: option.name,
-                    image: option.images.MEDIUM.path
+                    value: options.name,
+                    image: options.images.MEDIUM.path
                 }));
 
             });

@@ -9,7 +9,7 @@ class Transporter {
   public static function createSession()
   {
 
-    $client = new \GuzzleHttp\Client();
+    $client = new Client();
 
     $response = $client->request('POST', Config::getUrlSessions() . "?" . http_build_query(Config::getAuthentication()), ['verify'=>false]);    
 

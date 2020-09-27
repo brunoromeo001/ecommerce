@@ -216,7 +216,7 @@ class Order extends Model{
 
 	}
 
-	public function toSassion()
+	public function toSession()
 	{
 
 		$_SESSION[Order::SESSION] = $this->getValues();

@@ -368,15 +368,15 @@ scripts.push(function() {
         success: function (response) {
             // Retorna os meios de pagamento disponíveis.
 
-            var tplDebit = Handlebars.compile($('#tpl-paymant-debit').html());
-            var tplCredit = Handlebars.compile($('#tpl-paymant-credit').html());
+            var tplDebit = Handlebars.compile($('#tpl-payment-debit').html());
+            var tplCredit = Handlebars.compile($('#tpl-payment-credit').html());
 
             $.each(response.paymentMethods.ONLINE_DEBIT.options, function (index, option) {
 
                 $('#tab-debito .contents').append(tplDebit({
-                    value: options.name,
-                    image: options.images.MEDIUM.path,
-                    text: options.displayName
+                    value: option.name,
+                    image: option.images.MEDIUM.path,
+                    text: option.displayName
                 }));
 
             });
@@ -384,8 +384,8 @@ scripts.push(function() {
             $.each(response.paymentMethods.CREDIT_CARD.options, function (index, option) {
 
                 $('#tab-credito .contents').append(tplCredit({
-                    value: options.name,
-                    image: options.images.MEDIUM.path
+                    value: option.name,
+                    image: option.images.MEDIUM.path
                 }));
 
             });

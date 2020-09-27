@@ -125,7 +125,7 @@ $app->post("/checkout", function(){
 
 	$order->save();
 
-	$order->toSassion();
+	$order->toSession();
 
 	header("Location: /payment");
 	exit;
