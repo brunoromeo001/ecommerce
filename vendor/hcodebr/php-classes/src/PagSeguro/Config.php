@@ -16,7 +16,10 @@ class Config{
     const PRODUCTION_SESSIONS = "https://ws.pagseguro.uol.com.br/v2/sessions";
     
     const SANDBOX_URL_JS = "https://stc.sandbox.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
-    const PRODUCTION_URL_JS = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";    
+    const PRODUCTION_URL_JS = "https://stc.pagseguro.uol.com.br/pagseguro/api/v2/checkout/pagseguro.directpayment.js";
+
+    const MAX_INSTALLMENT_NO_INTEREST = 3;
+    const MAX_INSTALLMENT = 10;
 
     public static function getAuthentication():array
     {
@@ -51,4 +54,4 @@ class Config{
 
     }
 
-}
+};

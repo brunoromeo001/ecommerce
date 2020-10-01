@@ -110,7 +110,7 @@ $app->get("/order/:idorder/paypal", function($idorder){
 	$page->setTpl("payment-paypal", [
 		'order'=>$order->getValues(),
 		'cart'=>$cart->getValues(),
-		'products'=>$cart->getProducts()		
+		'products'=>$cart->getProducts()
 	]); 
 });
 
