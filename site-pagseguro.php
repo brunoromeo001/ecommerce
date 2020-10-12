@@ -38,6 +38,23 @@ $app->get('/payment', function(){
 
 });
 
+$app->post('/payment/credit', function(){
+
+    User::verifyLogin(false);
+
+    $order = new Order();
+
+    $order->getFromSession();
+
+    $address = $order->getAddress();
+
+    $cart = $order->getCart();
+
+    var_dump($order->getValues());
+    var_dump($address->getValues());
+    var_dump($cart->getValues());
+});
+
 
 
 
