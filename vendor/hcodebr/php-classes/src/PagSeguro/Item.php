@@ -2,6 +2,10 @@
 
 namespace Hcode\PagSeguro;
 
+use Exception;
+use DOMDocument;
+use DOMElement;
+
 class Item{
 
   private $id;
@@ -41,7 +45,7 @@ class Item{
     $this->$amount = $amount;
     $this->$quantity = $quantity;
   }
-
+  
   public function getDOMElement():DOMElement
   {
 

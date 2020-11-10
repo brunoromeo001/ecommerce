@@ -2,6 +2,11 @@
 
 namespace Hcode\PagSeguro;
 
+use Exception;
+use DOMDocument;
+use DOMElement;
+use Hcode\PagSeguro\Payment\Method;
+
 class Config{
 
   private $mode = "default";
@@ -28,11 +33,38 @@ class Config{
     $this->extraAmout = number_format($extraAmout, 2, '.', '');
   }
 
+  public function addItem(Item $item)
+  {
+
+    array_push($this->$items, $item);
+    
+  }
+
+  public function setBank(Bank $ank)
+  {
+
+    $this->bank = $bank;
+    $this->method = Method::DEBIT;
+  }
+
+  public function setCreditCard(CreditCard $creditCard)
+  {
+
+    $this->creditCard = $creditCard;
+    $this->method = Method::CREDIT_CARD;
+  }
+
+  public function setBoleto()
+  {
+    
+    $this->method = Method::BOLETO;
+  }
+  
+
   public function getDOMDocument():DOMDocument
   {
 
     $dom = new DOMDocument('1.0', 'ISO-8859-1');
-
 
     return $dom;
   }

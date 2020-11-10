@@ -414,6 +414,17 @@ scripts.push(function() {
         }
     });
 
+    $("#installments_field").on("change", function(){
+
+        var installment = $(this).find("option:selected").data("installment");
+
+        console.log(installment);
+
+        $("[name=installments_qtd").val(installment.quantity);
+        $("[name=installments_value").val(installment.installmentAmount);
+        $("[name=installments_total").val(installment.totalAmount);
+    });
+
     $("#number_field").on("change", function(){
 
         var value = $(this).val();
@@ -556,9 +567,17 @@ scripts.push(function() {
             expirationYear: params.year, // Ano da expiração do cartão, é necessário os 4 dígitos.
             success: function(response) {
                 // Retorna o cartão tokenizado.
-                console.log('TOKEN', response.card.token);
-                console.log('HASH', PagSeguroDirectPayment.getSenderHash());
-                console.log('PARAMS', params);
+                params.token = response.card.token;
+                params.hash = PagSeguroDirectPayment.getSenderHash();
+
+                $.post(
+                    "/payment/credit",
+                    $.param(params),
+                    function(r){
+                        
+                        console.log(r);
+                    }
+                );
             },
             error: function(response) {
                 // Callback para chamadas que falharam.                 
