@@ -81,9 +81,9 @@ $app->post('/payment/credit', function(){
 
     $sender = new Sender($order->getdesperson(), $cpf, $birthDate, $phone, $order->getdesemail(), $_POST['hash']);
 
-    $holder = new Holder($oder->getdesperson, $cpf, $birthDate, $phone);
+    $holder = new Holder($oder->getdesperson(), $cpf, $birthDate, $phone);
 
-    $shipping = new Shipping($address, (float)$cart->getvlfreight(), Shipping::PAC);
+    $shipping = new Shipping($shippingAddress, (float)$cart->getvlfreight(), Shipping::PAC);
 
     $installment = new Installment((int)$_POST['installment_qtd'], (float)$_POST['installment_value']);
 
@@ -102,7 +102,7 @@ $app->post('/payment/credit', function(){
 
     $payment = new Payment($order->getidorder(), $sender, $shipping);
 
-    foreach($cart->getProduct() as $product){
+    foreach($cart->getProducts() as $product){
 
         $item = new Item(
             (int)$product['idproduct'],
@@ -116,13 +116,7 @@ $app->post('/payment/credit', function(){
 
     $payment->setCreditCard($creditCard);
 
-    $dom = new DOMDocument();
-
-    $test = $installment->getDOMElement();
-
-    $testNode = $dom->importNode($test, true);
-
-    $dom->appendChild($testNode);
+    $dom = $payment->getDOMDocument();
     
     echo $dom->saveXml();
 });

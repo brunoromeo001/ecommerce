@@ -17,7 +17,7 @@ class Config{
   private $sender;
   private $shipping;
   private $method;
-  private $creditCart;
+  private $creditCard;
   private $bank;
 
   public function __construct(
@@ -40,7 +40,7 @@ class Config{
     
   }
 
-  public function setBank(Bank $ank)
+  public function setBank(Bank $bank)
   {
 
     $this->bank = $bank;
@@ -65,6 +65,14 @@ class Config{
   {
 
     $dom = new DOMDocument('1.0', 'ISO-8859-1');
+
+    $payment = $dom->createElement("payment");
+    $payment = $dom->appendChild($payment);
+
+    $mode = $dom->createElement("mode", $this->mode);
+    $mode = $dom->appendChild($mode);
+
+
 
     return $dom;
   }

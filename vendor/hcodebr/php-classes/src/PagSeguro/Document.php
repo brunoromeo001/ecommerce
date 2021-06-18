@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace Hcode\PagSeguro;
 
@@ -6,75 +6,77 @@ use Exception;
 use DOMDocument;
 use DOMElement;
 
-class Document{
+class Document {
 
-  private $type;
-  private $value;
+	private $type;
+	private $value;
 
-  const CPF = 'CPF';
+	const CPF = "CPF";
 
-  public function __construct(string $type, string $value)
-  {
+	public function __construct(string $type, string $value)
+	{
 
-    if (!$value){
+		if (!$value)
+		{
 
-      throw new Exception("Informe o valor do documento.");
-    }
+			throw new Exception("Informe o valor do documento.");
 
-    switch ($type)
-    {
-      case Document::CPF:
-        if(!Document::isValidCPF($value)){
-          
-          throw new Exception("CPF inválido.");
-        }
-      break;
-    }
+		}
 
-    $this->type = $type;
-    $this->value = $value;
-  }
+		switch ($type)
+		{
 
-  public static function isValidCPF($number):bool
-  {
+			case Document::CPF:
+			if (!Document::isValidCPF($value)) {
+				throw new Exception("CPF inválido.");
+			}
+			break;
 
-    $number = preg_replace('/[^0-9]/', '', (string) $number);
+		}
 
-    if (strlen($number) != 11)
-        return false;
+		$this->type = $type;
+		$this->value = $value;
 
-    for ($i = 0, $j = 10, $sum = 0; $i < 9; $i++, $j--)
-        $sum += $number{$i} * $j;
-    $rest = $sum % 11;
-    if ($number{9} != ($rest < 2 ? 0 : 11 - $rest))
-        return false;
+	}
 
-    for ($i = 0, $j = 11, $sum = 0; $i < 10; $i++, $j--)
-        $sum += $number{$i} * $j;
-    $rest = $sum % 11;
+	public static function isValidCPF($number):bool
+	{
 
-    return ($number{10} == ($rest < 2 ? 0 : 11 - $rest));
+		$number = preg_replace('/[^0-9]/', '', (string) $number);
+		
+		if (strlen($number) != 11)
+			return false;
+	
+		for ($i = 0, $j = 10, $sum = 0; $i < 9; $i++, $j--)
+			$sum += $number{$i} * $j;
+		$rest = $sum % 11;
+		if ($number{9} != ($rest < 2 ? 0 : 11 - $rest))
+			return false;
+	
+		for ($i = 0, $j = 11, $sum = 0; $i < 10; $i++, $j--)
+			$sum += $number{$i} * $j;
+		$rest = $sum % 11;
+	
+		return ($number{10} == ($rest < 2 ? 0 : 11 - $rest));
 
-  }
+	}
 
-  public function getDOMElement():DOMElement
-  {
+	public function getDOMElement():DOMElement
+	{
+	
+		$dom = new DOMDocument();
 
-    $dom = new DOMDocument();
+		$document = $dom->createElement("document");
+		$document = $dom->appendChild($document);
 
-    $document = $dom->createElement("document");
-    $document = $dom->appendChild($document);
+		$type = $dom->createElement("type", $this->type);
+		$type = $document->appendChild($type);
 
-    $document = $dom->createElement("type", $this->type);
-    $document = $document->appendChild($type);
+		$value = $dom->createElement("value", $this->value);
+		$value = $document->appendChild($value);
 
-    $document = $dom->createElement("value", $this->value);
-    $document = $document->appendChild($value);
+		return $document;
 
-    return $document;
+	}
 
-  }
-
-};
-
-?>
+}

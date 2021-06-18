@@ -21,7 +21,7 @@ class Phone{
 
     }
 
-    if(!$number || strlen($number) < 9 || $number > 10 )
+    if(!$number || strlen($number) < 9 || strlen($number) > 10 )
     {
 
       throw new Exception("Informe o número do telefone.");

@@ -10,7 +10,7 @@ class Config{
     const PRODUCTION_EMAIL = "brunogfvot@hotmail.com";
 
     const SANDBOX_TOKEN = "BAAF3380E44640FE9A95D1AA24A5DA9A";
-    const PRODUCTION_TOKEN = "5f13f9f3-2cb9-47fe-97b9-c1be6be53fed56dd869d4703830dd74d0129256c8fed7d02-35db-4ba2-8efd-1dce647812af";
+  const PRODUCTION_TOKEN = "ed677158-d0ab-4959-b583-ee6f6e30d2ee54c3ffc745bdaf81cdd5803e5052fe97b3c7-c0e0-458a-8a67-6fad44908789";
 
     const SANDBOX_SESSIONS = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
     const PRODUCTION_SESSIONS = "https://ws.pagseguro.uol.com.br/v2/sessions";
