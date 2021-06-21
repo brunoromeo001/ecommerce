@@ -113,7 +113,3 @@ $app->get("/order/:idorder/paypal", function($idorder){
 		'products'=>$cart->getProducts()
 	]); 
 });
-
-
-
-?>

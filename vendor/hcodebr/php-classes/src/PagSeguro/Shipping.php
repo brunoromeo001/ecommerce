@@ -29,10 +29,10 @@ class Shipping{
       throw new Exception("Informe um tipo de frete válido.");
     }
 
-    $this->$address = $address;
-    $this->$type = $type;
-    $this->$cost = $cost;
-    $this->$addressRequired = $addressRequired;  
+    $this->address = $address;
+    $this->type = $type;
+    $this->cost = $cost;
+    $this->addressRequired = $addressRequired;  
   }
 
   public function getDOMElement():DOMElement

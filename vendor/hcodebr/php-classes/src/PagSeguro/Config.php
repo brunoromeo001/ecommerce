@@ -10,7 +10,7 @@ class Config{
     const PRODUCTION_EMAIL = "brunogfvot@hotmail.com";
 
     const SANDBOX_TOKEN = "BAAF3380E44640FE9A95D1AA24A5DA9A";
-  const PRODUCTION_TOKEN = "ed677158-d0ab-4959-b583-ee6f6e30d2ee54c3ffc745bdaf81cdd5803e5052fe97b3c7-c0e0-458a-8a67-6fad44908789";
+    const PRODUCTION_TOKEN = "ed677158-d0ab-4959-b583-ee6f6e30d2ee54c3ffc745bdaf81cdd5803e5052fe97b3c7-c0e0-458a-8a67-6fad44908789";
 
     const SANDBOX_SESSIONS = "https://ws.sandbox.pagseguro.uol.com.br/v2/sessions";
     const PRODUCTION_SESSIONS = "https://ws.pagseguro.uol.com.br/v2/sessions";
@@ -20,6 +20,11 @@ class Config{
 
     const MAX_INSTALLMENT_NO_INTEREST = 3;
     const MAX_INSTALLMENT = 10;
+
+    const NOTIFICATION_URL = "http://www.brunoromeo.com.br/notification";
+
+    const SANDBOX_URL_TRANSACTION = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions";
+    const PRODUCTION_URL_TRANSACTION = "https://ws.pagseguro.uol.com.br/v2/transactions";
 
     public static function getAuthentication():array
     {
@@ -51,6 +56,13 @@ class Config{
     {
 
         return (Config::SANDBOX === true) ? Config::SANDBOX_URL_JS : Config::PRODUCTION_URL_JS;
+
+    }
+
+    public static function getUrlTransaction()
+    {
+
+        return (Config::SANDBOX === true) ? Config::SANDBOX_URL_TRANSACTION : Config::PRODUCTION_URL_TRANSACTION;
 
     }
 

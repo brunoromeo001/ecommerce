@@ -6,8 +6,9 @@ use Exception;
 use DOMDocument;
 use DOMElement;
 use Hcode\PagSeguro\Payment\Method;
+use Hcode\PagSeguro\Config;
 
-class Config{
+class Payment{
 
   private $mode = "default";
   private $currency = "BRL";
@@ -36,7 +37,7 @@ class Config{
   public function addItem(Item $item)
   {
 
-    array_push($this->$items, $item);
+    array_push($this->items, $item);
     
   }
 
@@ -70,9 +71,59 @@ class Config{
     $payment = $dom->appendChild($payment);
 
     $mode = $dom->createElement("mode", $this->mode);
-    $mode = $dom->appendChild($mode);
+    $mode = $payment->appendChild($mode);
 
+    $currency = $dom->createElement("currency", $this->currency);
+    $currency = $payment->appendChild($currency);
 
+    $notificationUrl = $dom->createElement("notificationURL", Config::NOTIFICATION_URL);
+    $notificationUrl = $payment->appendChild($notificationUrl);
+
+    $reciverEmail = $dom->createElement("reciverEmail", Config::PRODUCTION_EMAIL);
+    $reciverEmail = $payment->appendChild($reciverEmail);
+
+    $sender = $this->sender->getDOMElement();
+    $sender = $dom->importNode($sender, true);
+    $sender = $payment->appendChild($sender);
+
+    $items = $dom->createElement("items");
+    $items = $payment->appendChild($items);
+
+    foreach($this->items as $_item){
+
+      $item = $_item->getDOMElement();
+      $item = $dom->importNode($item, true);
+      $item = $items->appendChild($item);
+    }
+
+    $reference = $dom->createElement("reference", $this->reference);
+    $reference = $payment->appendChild($reference);
+
+    $shipping = $this->shipping->getDOMElement();
+    $shipping = $dom->importNode($shipping, true);
+    $shipping = $payment->appendChild($shipping);
+
+    $extraAmout = $dom->createElement("extraAmout", $this->extraAmout);
+    $extraAmout = $payment->appendChild($extraAmout);
+
+    $method = $dom->createElement("method", $this->method);
+    $method = $payment->appendChild($method);
+
+    switch($this->method){
+
+      case Method::CREDIT_CARD:
+        $creditCard = $this->creditCard->getDOMElement();
+        $creditCard = $dom->importNode($creditCard, true);
+        $creditCard = $payment->appendChild($creditCard);
+      break;
+
+      case Method::DEBIT:
+        $bank = $this->bank->getDOMElement();
+        $bank = $dom->importNode($bank, true);
+        $bank = $payment->appendChild($bank);
+      break;
+
+    }
 
     return $dom;
   }

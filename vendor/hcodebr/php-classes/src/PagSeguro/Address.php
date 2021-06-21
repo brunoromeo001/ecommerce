@@ -80,14 +80,14 @@ class Address{
     }
     
 
-    $this->$street = $street;
-    $this->$number = $number;
-    $this->$complement = $complement;
-    $this->$district = $district;
-    $this->$postalCode = $postalCode;
-    $this->$city = $city;
-    $this->$state = $state;
-    $this->$country = $country;
+    $this->street = $street;
+    $this->number = $number;
+    $this->complement = $complement;
+    $this->district = $district;
+    $this->postalCode = $postalCode;
+    $this->city = $city;
+    $this->state = $state;
+    $this->country = $country;
 
   }
 
@@ -99,7 +99,7 @@ class Address{
     $address = $dom->createElement($node);
     $address = $dom->appendChild($address);
 
-    $street = $dom->createElement("street", $this->$street);
+    $street = $dom->createElement("street", $this->street);
     $street = $address->appendChild($street);
 
     $number = $dom->createElement("number", $this->number);

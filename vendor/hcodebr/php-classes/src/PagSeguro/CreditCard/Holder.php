@@ -28,10 +28,10 @@ class Holder{
 
       throw new Exception("Informe o nome do comprador.");
     }
-    $this->$name = $name;
-    $this->$cpf = $cpf;
-    $this->$birthDate = $birthDate;
-    $this->$phone = $phone;
+    $this->name = $name;
+    $this->cpf = $cpf;
+    $this->birthDate = $birthDate;
+    $this->phone = $phone;
   }
 
   public function getDOMElement():DOMElement
@@ -57,7 +57,7 @@ class Holder{
 
     $phone = $this->phone->getDOMElement();
     $phone = $dom->importNode($phone, true);
-    $phone = $documents->appendChild($phone);
+    $phone = $holder->appendChild($phone);
    
     return $holder;
 

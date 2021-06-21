@@ -40,10 +40,10 @@ class Item{
       throw new Exception("Informe a quantidade do item.");
     }   
 
-    $this->$id = $id;
-    $this->$description = $description;
-    $this->$amount = $amount;
-    $this->$quantity = $quantity;
+    $this->id = $id;
+    $this->description = $description;
+    $this->amount = $amount;
+    $this->quantity = $quantity;
   }
   
   public function getDOMElement():DOMElement
@@ -55,15 +55,18 @@ class Item{
     $item = $dom->appendChild($item);
 
     $amount = $dom->createElement("amount", number_format($this->amount, 2, '.', ''));
-    $amount = $shipping->appendChild($amount);
+    $amount = $item->appendChild($amount);
+
+    $id = $dom->createElement("id", $this->id);
+    $id = $item->appendChild($id);
 
     $quantity = $dom->createElement("quantity", $this->quantity);
-    $quantity = $shipping->appendChild($quantity);
+    $quantity = $item->appendChild($quantity);
 
     $description = $dom->createElement("description", $this->description);
-    $description = $shipping->appendChild($description);
+    $description = $item->appendChild($description);
    
-    return $installment;
+    return $item;
 
   }
 

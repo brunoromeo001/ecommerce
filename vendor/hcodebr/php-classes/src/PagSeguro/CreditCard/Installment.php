@@ -24,8 +24,8 @@ class Installment{
       throw new Exception("Valor total inválido.");
     }
 
-    $this->$quantity = $quantity;
-    $this->$value = $value;
+    $this->quantity = $quantity;
+    $this->value = $value;
 
   }
 
@@ -38,13 +38,13 @@ class Installment{
     $installment = $dom->appendChild($installment);
 
     $value = $dom->createElement("value", number_format($this->value, 2, '.', ''));
-    $value = $shipping->appendChild($value);
+    $value = $installment->appendChild($value);
 
     $quantity = $dom->createElement("quantity", $this->quantity);
-    $quantity = $shipping->appendChild($quantity);      
+    $quantity = $installment->appendChild($quantity);      
     
     $noInterestInstallmentQuantity = $dom->createElement("noInterestInstallmentQuantity", Config::MAX_INSTALLMENT_NO_INTEREST);
-    $noInterestInstallmentQuantity = $shipping->appendChild($noInterestInstallmentQuantity);       
+    $noInterestInstallmentQuantity = $installment->appendChild($noInterestInstallmentQuantity);       
    
    
     return $installment;

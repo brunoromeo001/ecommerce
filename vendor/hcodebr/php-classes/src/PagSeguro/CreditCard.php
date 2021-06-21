@@ -27,10 +27,10 @@ class CreditCard{
       throw new Exception("Informe o token do cartão de crédito.");
     }
 
-    $this->$token = $token;
-    $this->$installment = $installment;
-    $this->$holder = $holder;
-    $this->$billingAddress = $billingAddress;
+    $this->token = $token;
+    $this->installment = $installment;
+    $this->holder = $holder;
+    $this->billingAddress = $billingAddress;
 
   }
 

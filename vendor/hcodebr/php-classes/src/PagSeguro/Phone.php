@@ -21,35 +21,35 @@ class Phone{
 
     }
 
-    if(!$number || strlen($number) < 9 || strlen($number) > 10 )
+    if(!$number || strlen($number) < 8 || strlen($number) > 9 )
     {
 
       throw new Exception("Informe o número do telefone.");
 
     }
 
-    $this->$areaCode = $areaCode;
-    $this->$number = $number;
+    $this->areaCode = $areaCode;
+    $this->number = $number;
 
   }
 
   public function getDOMElement():DOMElement
-  {
+	{
+	
+		$dom = new DOMDocument();
 
-    $dom = new DOMDocument();
+		$phone = $dom->createElement("phone");
+		$phone = $dom->appendChild($phone);
 
-    $phone = $dom->createElement("phone");
-    $phone = $dom->appendChild($phone);
+		$areaCode = $dom->createElement("areaCode", $this->areaCode);
+		$areaCode = $phone->appendChild($areaCode);
 
-    $areaCode = $dom->createElement("areaCode", $this->areaCode);
-    $areaCode = $document->appendChild($areaCode);
+		$number = $dom->createElement("number", $this->number);
+		$number = $phone->appendChild($number);
 
-    $phone = $dom->createElement("number", $this->number);
-    $phone = $phone->appendChild($number);
+		return $phone;
 
-    return $phone;
-
-  }
+	}
 
 };
 

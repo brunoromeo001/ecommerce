@@ -414,96 +414,115 @@ scripts.push(function() {
         }
     });
 
-    $("#number_field").on("change", function(){
+    $("#installments_field").on("change", function(){
 
-        var value = $(this).val();
+var installment = $(this).find("option:selected").data("installment");
 
-        if (value.length >= 6){
+console.log(installment);
 
-            PagSeguroDirectPayment.getBrand({
-                cardBin: value.substring(0, 6),
-                success: function(response) {
-                  
-                  $("#brand_field").val(response.brand.name);
-                  
-                  PagSeguroDirectPayment.getInstallments({
-                    amount: parseFloat("<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
-                    maxInstallmentNoInterest: parseInt("<?php echo htmlspecialchars( $pagseguro["maxInstallmentNoInterest"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
-                    brand: response.brand.name,
-                    success: function(response){
-                        // Retorna as opções de parcelamento disponíveis
-                        $("#installments_field").html('<option disabled="disabled"></option>');
+$("[name=installments_qtd]").val(installment.quantity);
+$("[name=installments_value]").val(installment.installmentAmount);
+$("[name=installments_total]").val(installment.totalAmount);
 
-                        var tplInstallmentFree = Handlebars.compile($("#tpl-installment-free").html());
-                        
-                        var tplInstallment = Handlebars.compile($("#tpl-installment").html());
+});
 
-                        var formatReal = {
-                            minimumFractionDigits: 2,
-                            style: "currency",
-                            currency: "BRL"
-                        };
-                        
+$("#number_field").on("change", function(){
 
-                        $.each(response.installments[$("#brand_field").val()], function(index, installment){
+var value = $(this).val();
 
-                            if(parseInt("<?php echo htmlspecialchars( $pagseguro["maxInstallment"], ENT_COMPAT, 'UTF-8', FALSE ); ?>") > index){
-                                if(installment.interestFree === true){
+if (value.length >= 6) {
 
-                                    var $option = $(tplInstallmentFree({
-                                        quantity: installment.quantity,
-                                        installmentAmount: installment.installmentAmount.toLocaleString('pt-BR', formatReal)
-                                    }));
+    PagSeguroDirectPayment.getBrand({
+        cardBin: value.substring(0, 6),
+        success: function(response) {
+            
+            $("#brand_field").val(response.brand.name);
+            
+            PagSeguroDirectPayment.getInstallments({
+                amount: parseFloat("<?php echo htmlspecialchars( $order["vltotal"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
+                maxInstallmentNoInterest: parseInt("<?php echo htmlspecialchars( $pagseguro["maxInstallmentNoInterest"], ENT_COMPAT, 'UTF-8', FALSE ); ?>"),
+                brand: response.brand.name,
+                success: function(response){
+                    
+                    $("#installments_field").html("<option value=''>Escolha as parcelas</option>");
 
-                                } else{
+                    var tplInstallmentFree = Handlebars.compile($("#tpl-installment-free").html());
+                    var tplInstallment = Handlebars.compile($("#tpl-installment").html());
 
-                                    var $option = $(tplInstallment({
-                                        quantity: installment.quantity,
-                                        installmentAmount: installment.installmentAmount.toLocaleString('pt-BR', formatReal),
-                                        totalAmount: installment.totalAmount.toLocaleString('pt-BR', formatReal)
-                                    }));                               
+                    var formatReal = {
+                        minimumFractionDigits: 2,
+                        style: "currency",
+                        currency: "BRL"
+                    };
+                    
+                    $.each(response.installments[$("#brand_field").val()], function(index, installment){
 
-                                }
+                        if (parseInt("<?php echo htmlspecialchars( $pagseguro["maxInstallment"], ENT_COMPAT, 'UTF-8', FALSE ); ?>") > index) {
 
-                                $option.data("installment", installment);
+                            if (installment.interestFree === true) {
 
-                                $("#installments_field").append($option);
+                            var $option = $(tplInstallmentFree({
+                                quantity: installment.quantity,
+                                installmentAmount: installment.installmentAmount.toLocaleString('pt-BR', formatReal)
+                            }));
+
+                            } else {
+
+                            var $option = $(tplInstallment({
+                                quantity: installment.quantity,
+                                installmentAmount: installment.installmentAmount.toLocaleString('pt-BR', formatReal),
+                                totalAmount: installment.totalAmount.toLocaleString('pt-BR', formatReal)
+                            }));
+
                             }
 
-                        });
-                   },
-                    error: function(response) {
-                        // callback para chamadas que falharam.
-                        var errors = [];
+                            $option.data("installment", installment);
 
-                        for (var code in response.errors) {
+                            $("#installments_field").append($option);
 
-                            errors.push(response.erros[code]);
                         }
-                        showError(errors.toString());
-                   },
-                    complete: function(response){
-                        // Callback para todas chamadas.
-                    }
-                });
+
+                    });
 
                 },
                 error: function(response) {
-                  //tratamento do erro
-                  var errors = [];
+                    
+                    var errors = [];
 
-                  for (var code in response.errors) {
-      
-                      errors.push(response.erros[code]);
-                  }
-                  showError(errors.toString());
+                    for (var code in response.errors)
+                    {
+                        errors.push(response.errors[code]);
+                    }
+
+                    showError(errors.toString());
+
                 },
-                complete: function(response) {
-                  //tratamento comum para todas chamadas
+                complete: function(response){
+                    // Callback para todas chamadas.
                 }
             });
+
+        },
+        error: function(response) {
+            
+            var errors = [];
+
+            for (var code in response.errors)
+            {
+                errors.push(response.errors[code]);
+            }
+            
+            showError(errors.toString());
+
+        },
+        complete: function(response) {
+            //tratamento comum para todas chamadas
         }
     });
+
+}
+
+});
 
     function isValidCPF(number) {
         var sum;
@@ -525,6 +544,48 @@ scripts.push(function() {
         if (rest != parseInt(number.substring(10, 11) ) ) return false;
         return true;
     } 
+
+    $('#form-boleto').on("submit", function(e){
+
+        e.preventDefault();
+
+        if(!isValidCPF($("#form-boleto [name=cpf]").val())){
+
+            showError('CPF inválido.');
+            return false;
+        }
+
+        var formData = $(this).serializeArray();
+
+        var params = {};
+
+        $.each(formData, function(index, field){
+
+            params[field.name] = field.value;
+
+        });  
+
+        params.hash = PagSeguroDirectPayment.getSenderHash();
+
+        $.post(
+            "/payment/boleto",
+            $.param(params),
+            function(r){
+
+                var response = JSON.parse(r);
+
+                if(response.success){
+
+                    window.location.href = "/payment/success/boleto";
+                } else {
+
+                    showError("Não foi possível efeturar o pagamento");
+                }
+            }
+        );
+
+
+    });
 
     $('#form-credit').on("submit", function(e){
 
@@ -563,8 +624,16 @@ scripts.push(function() {
                     "/payment/credit",
                     $.param(params),
                     function(r){
-                        
-                        console.log(r);
+
+                        var response = JSON.parse(r);
+
+                        if(response.success){
+
+                            window.location.href = "/payment/success";
+                        } else {
+
+                            showError("Não foi possível efeturar o pagamento");
+                        }
                     }
                 );
             },

@@ -42,14 +42,13 @@ class Sender{
       throw new Exception("Informe a identificação do comprador.");
     }
 
-    $this->$name = $name;
-    $this->$cpf = $cpf;
-    $this->$bornDate = $bornDate;
-    $this->$phone = $phone;
-    $this->$email = $email;
-    $this->$city = $city;
-    $this->$hash = $hash;
-    $this->$ip = $_SERVER['REMOTE_ADDR'];
+    $this->name = $name;
+    $this->cpf = $cpf;
+    $this->bornDate = $bornDate;
+    $this->phone = $phone;
+    $this->email = $email;    
+    $this->hash = $hash;
+    $this->ip = $_SERVER['REMOTE_ADDR'];
     
   }
 
@@ -73,13 +72,13 @@ class Sender{
     $documents = $dom->createElement("documents");
     $documents = $sender->appendChild($documents);
 
-    $cpf = $this->cpf->getDOMElement();
+    $cpf = $this->cpf->getDomElement();
     $cpf = $dom->importNode($cpf, true);
     $cpf = $documents->appendChild($cpf);
 
-    $phone = $this->phone->getDOMElement();
+    $phone = $this->phone->getDomElement();
     $phone = $dom->importNode($phone, true);
-    $phone = $documents->appendChild($phone);
+    $phone = $sender->appendChild($phone);
 
     $hash = $dom->createElement("hash", $this->hash);
     $hash = $sender->appendChild($hash);
