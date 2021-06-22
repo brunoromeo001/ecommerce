@@ -17,7 +17,7 @@ use \Hcode\PagSeguro\CreditCard\Holder;
 use \Hcode\PagSeguro\Bank;
 use \Hcode\Model\Order;
 
-$app->get('/payment/notification', function(){
+$app->post('/payment/notification', function(){
 
     Transporter::getNotification($_POST['notificationCode'], $_POST['notificationType']);
 
