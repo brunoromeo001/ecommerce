@@ -20,11 +20,14 @@ class Config{
 
     const MAX_INSTALLMENT_NO_INTEREST = 3;
     const MAX_INSTALLMENT = 10;
-
-    const NOTIFICATION_URL = "http://www.brunoromeo.com.br/notification";
-
+    
     const SANDBOX_URL_TRANSACTION = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions";
     const PRODUCTION_URL_TRANSACTION = "https://ws.pagseguro.uol.com.br/v2/transactions";
+
+    const SANDBOX_URL_NOTIFICATION = "https://ws.sandbox.pagseguro.uol.com.br/v2/transactions/notifications";
+    const PRODUCTION_URL_NOTIFICATION = "https://ws.pagseguro.uol.com.br/v2/transactions/notifications";
+    
+    const NOTIFICATION_URL = "http://www.brunoromeo.com.br/payment/notification";
 
     public static function getAuthentication():array
     {
@@ -65,5 +68,14 @@ class Config{
         return (Config::SANDBOX === true) ? Config::SANDBOX_URL_TRANSACTION : Config::PRODUCTION_URL_TRANSACTION;
 
     }
+    
+    public static function getNotificationTransactionURL()
+    {
+
+        return (Config::SANDBOX === true) ? Config::SANDBOX_URL_NOTIFICATION : Config::PRODUCTION_URL_NOTIFICATION;
+
+    }
+
+    
 
 };
