@@ -19,7 +19,11 @@ use \Hcode\Model\Order;
 
 $app->post('/payment/notification', function(){
 
-    Transporter::getNotification($_POST['notificationCode'], $_POST['notificationType']);
+    $transporter = new Transporter();
+
+    $transporter->getNotification($_POST['notificationType'], $_POST['notificationCode']);
+    
+    
 
 });
 

@@ -4,6 +4,7 @@ namespace Hcode\PagSeguro;
 
 use \GuzzleHttp\Client;
 use \Hcode\Model\Order;
+use Exception;
 
 class Transporter {
 
@@ -50,7 +51,7 @@ class Transporter {
     return $xml;
   }
 
-  public function getNotification(string $code, string $type)
+  public function getNotification(string $type, string $code)
 	{
 
 		switch ($type)
